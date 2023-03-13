@@ -1,6 +1,6 @@
 # Tämä on repositio kurssille **Ohjelmistotekniikka**
 
-### Se sisältää viikkotehtäviä sekä *laajemman harjoitustyön*, kurssi suoritettiin ensimmäisen opiskeluvuoden 4. periodissa _2023_.
+### Se sisältää viikkotehtäviä sekä *laajemman harjoitustyön*.
 
 ##### Tehtävät
 

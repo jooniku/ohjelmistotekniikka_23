@@ -1,4 +1,4 @@
-# Repositio kurssille **Ohjelmistotekniikka**
+# Repositorio kurssille **Ohjelmistotekniikka**
 
 ### Se sisältää viikkotehtäviä sekä *laajemman harjoitustyön*.
 

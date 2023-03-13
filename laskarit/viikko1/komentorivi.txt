@@ -1,0 +1,8 @@
+.
+├── eka.txt
+├── kolmas.txt
+├── laskarit
+│   └── viikko1
+└── stuff
+    └── neljas.txt
+

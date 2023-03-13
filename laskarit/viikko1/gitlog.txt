@@ -1,0 +1,75 @@
+commit c8a8f4d993dbc7dee70fcf0dea098d1f287114b4
+Author: Joona Nikula <nikulajoona@gmail.com>
+Date:   Mon Mar 13 11:31:46 2023 +0200
+
+    lisäyksiä
+
+ eka.txt    | 2 +-
+ kolmas.txt | 5 ++++-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+commit 435a1c8a603e0641043f65f4ade3a8344608ac91
+Author: Joona Nikula <nikulajoona@gmail.com>
+Date:   Mon Mar 13 11:28:35 2023 +0200
+
+    edellinen ei commitannut
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 673983e9643c1699dee7ff83bfc2569f1b392064
+Author: Joona Nikula <nikulajoona@gmail.com>
+Date:   Mon Mar 13 11:27:56 2023 +0200
+
+    poistoja ja nimen muutos
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 21edcc608b9853ae836bab52d336d3b087746b61
+Author: Joona Nikula <nikulajoona@gmail.com>
+Date:   Mon Mar 13 11:24:40 2023 +0200
+
+    tekstin muutosta
+
+ tiedosto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit e40e97ee5b792f2f67dd3144ed3e4493db6367b3
+Author: Joona Nikula <nikulajoona@gmail.com>
+Date:   Mon Mar 13 11:22:48 2023 +0200
+
+    lisää tekstiä
+
+ tiedosto.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7ea033fdf592efbd1436e3a98db9fa4a880af442
+Author: Joona Nikula <nikulajoona@gmail.com>
+Date:   Mon Mar 13 11:16:51 2023 +0200
+
+    lisää tekstiä ja kansio
+
+ kolmas.txt       | 1 +
+ stuff/neljas.txt | 0
+ toinen.txt       | 1 +
+ 3 files changed, 2 insertions(+)
+
+commit 226c72e9c3926873f1d043d4c14c03faf035668c
+Author: Joona Nikula <nikulajoona@gmail.com>
+Date:   Mon Mar 13 11:11:37 2023 +0200
+
+    muuta ja lisää
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit c285fca902b45504b6ae69a753c95041738f1fbe
+Author: Joona Nikula <nikulajoona@gmail.com>
+Date:   Mon Mar 13 11:09:38 2023 +0200
+
+    luo tiedosto.txt
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)

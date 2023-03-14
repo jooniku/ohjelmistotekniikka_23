@@ -13,7 +13,7 @@ The app opens up to a login page where user can log in or create a new account. 
 ## Functions of the basic version
 ### Before login
 - User can register a new account
-  - Must be unique and has some specifications like minimum length of 2 and max length of 10
+  - Username must be unique and has some specifications like minimum length of 2 and max length of 10
 - User can log in with correct username and password
 - If log in is not successful, user is notified
 

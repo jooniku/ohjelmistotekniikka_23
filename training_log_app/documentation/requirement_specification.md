@@ -1,10 +1,10 @@
 # Requirement specification
 
 ## Purpose of the app
-With the app, users can keep track and get useful data from their martial arts training. Each user has their unique, private data.
+With the app, users can keep track and get useful data from their martial arts training. Each user has their unique data.
 
 ## Users
-Currently there are no admin users, though that might be created. The only usertype is normal user.
+Currently there are no admin users, though one might be created. The only usertype is normal user.
 
 ## User interface draft
 ![image](https://user-images.githubusercontent.com/101401566/225024165-f36fcf74-07ad-4cdf-b36f-de9dda515306.png)
@@ -14,8 +14,8 @@ The app opens up to a login page where user can log in or create a new account. 
 ### Before login
 - User can register a new account
   - Username must be unique and has some specifications like minimum length of 2 and max length of 10
-- User can log in with correct username and password
-- If log in is not successful, user is notified
+- User can login with correct username and password
+- If login is not successful, user is notified
 
 ### After login
 #### Main page

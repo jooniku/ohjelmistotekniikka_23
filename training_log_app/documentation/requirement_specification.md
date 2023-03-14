@@ -7,4 +7,27 @@ With the app, users can keep track and get useful data from their martial arts t
 Currently there are no admin users, though that might be created. The only usertype is normal user.
 
 ## User interface draft
+![image](https://user-images.githubusercontent.com/101401566/225024165-f36fcf74-07ad-4cdf-b36f-de9dda515306.png)
+The app opens up to a login page where user can log in or create a new account. After login they can view their training data.
 
+## Functions of the basic version
+### Before login
+- User can register a new account
+  - Must be unique and has some specifications like minimum length of 2 and max length of 10
+- User can log in with correct username and password
+- If log in is not successful, user is notified
+
+### After login
+- User can see statistics of their training data
+  - The data on the from page might be *total hours trained* etc. and the precentage of goals (explained below) achieved
+- User sees last entry on the front page (or a part of it)
+  - Perhaps users has a goal for each next training session and can see the goal
+- User can add new entries
+- User can view more specific data
+
+## Further development
+After the completion of the basic version, these are some improvements to consider
+- User can get some kind of analysis of training data to their email
+- User can edit previous entries
+- Introduction of admin user
+- Training groups that can have the same goals etc.

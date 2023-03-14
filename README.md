@@ -1,10 +1,10 @@
-# Repositorio kurssille **Ohjelmistotekniikka**
+# Repository for the course **Ohjelmistotekniikka**
 
-### Se sisältää viikkotehtäviä sekä *laajemman harjoitustyön*.
+### Contains weekly assignments and a *larger project*
 
-##### Tehtävät
+##### Assignments
 
-###### Viikko 1
+###### Week 1
 
 [gitlog.txt](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/laskarit/viikko1/gitlog.txt)
 

@@ -1,5 +1,5 @@
 # Monopoli luokkakaavio
-
+  
 ## Tehtävä 1 & 2
  
 ```mermaid

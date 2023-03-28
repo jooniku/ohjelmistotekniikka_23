@@ -1,5 +1,5 @@
 # Tehtävä 3
-
+    
 ```mermaid
   sequenceDiagram
     main->>machine: __init__()

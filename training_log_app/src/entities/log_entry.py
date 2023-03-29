@@ -2,7 +2,7 @@ class LogEntry:
     '''Class for a single log entry.
     
     All attributes are None by default (except was_last_goal_achieved, which is boolean).
-    It is not necessary to give any information, except date, user and log_entry_id.
+    It is not necessary to give any information, except date and user.
 
     Attributes:
         date: type datetime.date
@@ -12,11 +12,11 @@ class LogEntry:
         what_did_not_go_well: type string
         goal_for_next_session: type string
         was_last_goal_achieved: type bool
-        user: type User
+        user_id: type int
         log_entry_id: type int created in database
     '''
 
-    def __init__(self, date=None, duration=None, session_style=None, what_went_well=None, what_did_not_go_well=None, goal_for_next_session=None, was_last_goal_achieved=False, user=None):
+    def __init__(self, date=None, duration=None, session_style=None, what_went_well=None, what_did_not_go_well=None, goal_for_next_session=None, was_last_goal_achieved=False, user_id=None):
         self.date = date
         self.duration = duration
         self.session_style = session_style
@@ -24,7 +24,7 @@ class LogEntry:
         self.what_did_not_go_well = what_did_not_go_well
         self.goal_for_next_session = goal_for_next_session
         self.was_last_goal_achieved = was_last_goal_achieved
-        self.user = user
+        self.user_id = user_id
         # self.id get from database
 
         

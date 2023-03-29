@@ -7,25 +7,25 @@ class LogEntry:
     Attributes:
         date: type datetime.date
         duration: type integer in minutes
-        what_was_trained: type string
+        session_style: type string   e.g. boxing, wrestling, perhaps multiple choice?
         what_went_well: type string
         what_did_not_go_well: type string
         goal_for_next_session: type string
         was_last_goal_achieved: type bool
         user: type User
-        log_entry_id: type string
+        log_entry_id: type int created in database
     '''
 
-    def __init__(self, date=None, duration=None, what_was_trained=None, what_went_well=None, what_did_not_go_well=None, goal_for_next_session=None, was_last_goal_achieved=False, user=None, log_entry_id=None):
+    def __init__(self, date=None, duration=None, session_style=None, what_went_well=None, what_did_not_go_well=None, goal_for_next_session=None, was_last_goal_achieved=False, user=None):
         self.date = date
         self.duration = duration
-        self.what_was_trained = what_was_trained
+        self.session_style = session_style
         self.what_went_well = what_went_well
         self.what_did_not_go_well = what_did_not_go_well
         self.goal_for_next_session = goal_for_next_session
         self.was_last_goal_achieved = was_last_goal_achieved
         self.user = user
-        self.id = log_entry_id
+        # self.id get from database
 
         
     

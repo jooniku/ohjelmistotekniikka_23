@@ -1,10 +1,11 @@
 from entities.log_entry import LogEntry
+from entities.user import User
 from database_connection import get_database_connection
 
 class LogEntryRepository:
     # class to handle database stuff for log entries
 
-    def __init__(self, filepath):
+    def __init__(self):
         '''Constructor function'''
         self.database = get_database_connection()
 
@@ -16,10 +17,10 @@ class LogEntryRepository:
         Returns: Specified users entries.'''
         pass
 
-    def create_entry_with_username(self, username: str, log_entry: LogEntry):
+    def _create_entry_with_user(self, user: User, log_entry: LogEntry):
         '''Create entry for user.
         
-        Arguments: username - which users entry
+        Arguments: user - which users entry
                    log_entry - the entry to add
         
         Returns: boolean for successful creation'''
@@ -45,23 +46,3 @@ class LogEntryRepository:
             return False
         return True
 
-
-# for testing
-
-import datetime
-date = datetime.datetime.today()
-duration = 90
-session_style = 'wrestling'
-what_went_well = 'got a sweet double leg'
-what_did_not_go_well = 'got chocked'
-goal_for_next_session = 'get 3 singles'
-was_last_goal_achieved = True
-user_id = 1
-
-entry = LogEntry(date, duration, session_style, what_went_well, 
-                 what_did_not_go_well, goal_for_next_session,
-                 was_last_goal_achieved, user_id)
-
-con = LogEntryRepository()
-
-con.create_entry_with_username(entry)

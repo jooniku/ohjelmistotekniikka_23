@@ -40,5 +40,9 @@ class LogEntryRepository:
                     log_entry.session_style, log_entry.what_went_well,
                     log_entry.what_did_not_go_well, log_entry.goal_for_next_session,
                     log_entry.was_last_goal_achieved, log_entry.user_id])    
+        
+        log_id = cursor.execute('''select max(id) from Log_entries where user_id=?''', [log_entry.user_id]).fetchone()[0]
+
         self.database.commit()
 
+        log_entry._add_id(log_id)

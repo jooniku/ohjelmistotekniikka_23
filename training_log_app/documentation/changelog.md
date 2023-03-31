@@ -6,3 +6,6 @@
 - Added database connection
 - Added configuration files for filesystem and database
 - User can be created and saved to database, before saving password is hashed
+- Log entries can be saved to database and a couple tests for that
+
+

@@ -6,3 +6,4 @@
 | 28.03 | 1    | Created a couple initial classes and repositories for them | 
 | 29.03 | 2    | Created couple functions for database connections and log entries |
 | 30.03 | 3    | Created function so user can be saved to database and a couple tests for that |
+| 31.03 | 1    | Log entries can be saved in database and tests |

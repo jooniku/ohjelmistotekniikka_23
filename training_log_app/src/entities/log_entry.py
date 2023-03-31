@@ -1,4 +1,4 @@
-from user import User
+from entities.user import User
 
 class LogEntry:
     '''Class for a single log entry.
@@ -18,7 +18,8 @@ class LogEntry:
         log_entry_id: type int created in database
     '''
 
-    def __init__(self, user: User, date=None, duration=None, session_style=None, what_went_well=None, what_did_not_go_well=None, goal_for_next_session=None, was_last_goal_achieved=False):
+    def __init__(self, user_id, date=None, duration=None, session_style=None, what_went_well=None, what_did_not_go_well=None, goal_for_next_session=None, was_last_goal_achieved=False):
+        self.user_id = user_id
         self.date = date
         self.duration = duration
         self.session_style = session_style
@@ -26,7 +27,6 @@ class LogEntry:
         self.what_did_not_go_well = what_did_not_go_well
         self.goal_for_next_session = goal_for_next_session
         self.was_last_goal_achieved = was_last_goal_achieved
-        self.user_id = user.id
         self.log_id = None
 
     def _add_id(self, id):

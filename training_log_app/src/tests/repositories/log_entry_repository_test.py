@@ -12,23 +12,30 @@ class TestLogEntryRepository(unittest.TestCase):
         date = datetime.datetime.today()
         duration = 90
         session_style = 'wrestling'
-        what_went_well = 'got a sweet double leg'
+        what_went_well = 'got a sweet firemans carry'
         what_did_not_go_well = 'got chocked'
         goal_for_next_session = 'get 3 singles'
         was_last_goal_achieved = True
         user_id = 1
 
-        self.entry = LogEntry(date, duration, session_style, what_went_well, 
+        self.entry = LogEntry(user_id, date, duration, session_style, what_went_well, 
                         what_did_not_go_well, goal_for_next_session,
-                        was_last_goal_achieved, user_id)
+                        was_last_goal_achieved)
         
         self.entry_repo = LogEntryRepository()
         
-        self.user = User('username', 'password')
+        self.user = User('userman', 'hellowalls')
 
 
     
-    #def test_create_legal_entry_with_user_returns_true(self):
-    #    attempt = self.entry_repo._create_entry_with_user(self.user, self.entry)
+    def test_create_legal_entry_returns_entry(self):
+        attempt = self.entry_repo._create_entry(self.entry)
 
-    #    self.assertEqual(attempt, True)
+        self.assertEqual(attempt, self.entry)
+
+
+
+    def test_created_legal_entry_has_correct_id_num(self):
+        attempt = self.entry_repo._create_entry(self.entry)
+
+        self.assertEqual(self.entry.log_id, 1)

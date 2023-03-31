@@ -22,27 +22,29 @@ class LogEntryRepository:
         Log_entry itself has user_id with it.
         
         Arguments: log_entry - the entry to add
-        
+
         Returns: boolean for successful creation'''
         cursor = self.database.cursor()
 
         cursor.execute('''insert into Log_entries (
+                    user_id,
                     date,
                     duration,
                     session_style,
                     what_went_well,
                     what_did_not_go_well,
                     goal_for_next_session,
-                    was_last_goal_achieved,
-                    user_id reference Users) 
+                    was_last_goal_achieved) 
                     values (?,?,?,?,?,?,?,?)''',
-                    [log_entry.date, log_entry.duration,
+                    [log_entry.user_id, log_entry.date, log_entry.duration,
                     log_entry.session_style, log_entry.what_went_well,
                     log_entry.what_did_not_go_well, log_entry.goal_for_next_session,
-                    log_entry.was_last_goal_achieved, log_entry.user_id])    
+                    log_entry.was_last_goal_achieved])    
         
         log_id = cursor.execute('''select max(id) from Log_entries where user_id=?''', [log_entry.user_id]).fetchone()[0]
 
         self.database.commit()
 
         log_entry._add_id(log_id)
+
+        return log_entry

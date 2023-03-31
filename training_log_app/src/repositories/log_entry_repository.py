@@ -5,9 +5,9 @@ from database_connection import get_database_connection
 class LogEntryRepository:
     # class to handle database stuff for log entries
 
-    def __init__(self):
+    def __init__(self, db_connection):
         '''Constructor function'''
-        self.database = get_database_connection()
+        self.database = db_connection
 
     def get_entry_with_user(self, user: User):
         '''Return users entries.

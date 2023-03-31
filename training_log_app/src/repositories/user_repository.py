@@ -27,7 +27,7 @@ class UserRepository:
         cursor.execute('''insert into Users (username, password)
                         values (?,?)''', [user.username, hashed_password])
 
-        user_id = cursor.execute('''select id from Users where username=?''', [user.username]).fetchone()[0]
+        user_id = cursor.execute('''select max(id) from Users''').fetchone()[0]
 
         self._db_connection.commit()
 

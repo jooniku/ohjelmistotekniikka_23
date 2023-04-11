@@ -1,6 +1,6 @@
+import bcrypt
 from entities.user import User
 from database_connection import get_database_connection
-import bcrypt
 
 
 class UserRepository:
@@ -22,7 +22,8 @@ class UserRepository:
 
         cursor = self._db_connection.cursor()
 
-        hashed_password = bcrypt.hashpw(user.password.encode('utf-8'), bcrypt.gensalt(12))
+        hashed_password = bcrypt.hashpw(
+            user.password.encode('utf-8'), bcrypt.gensalt(12))
 
         cursor.execute('''insert into Users (username, password)
                         values (?,?)''', [user.username, hashed_password])
@@ -34,4 +35,6 @@ class UserRepository:
         user.add_id(user_id)
 
         return user
-        
+
+
+user_repository = UserRepository(get_database_connection())

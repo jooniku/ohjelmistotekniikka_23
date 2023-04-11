@@ -4,6 +4,7 @@ from database_connection import get_database_connection
 from entities.user import User
 from repositories.user_repository import UserRepository
 
+
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
         self.user_george = User(username='george', password='ilovedinosaurs')

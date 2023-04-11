@@ -9,3 +9,8 @@
 - Log entries can be saved to database and a couple tests for that
 
 
+## Week 4
+- Created user interface for adding new log entries
+- User can add a new entry and it is stored in database
+
+

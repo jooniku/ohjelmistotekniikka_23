@@ -1,6 +1,6 @@
 class User:
     '''Class for a single user. 
-    
+
     Attributes:
         id = int
         username: string

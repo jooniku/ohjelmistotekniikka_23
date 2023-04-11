@@ -1,11 +1,13 @@
 from database_connection import get_database_connection
 
+
 def drop_tables(db_connection):
     cursor = db_connection.cursor()
 
     cursor.execute('''drop table if exists Users;''')
     cursor.execute('''drop table if exists Log_entries;''')
     db_connection.commit()
+
 
 def create_tables(db_connection):
     cursor = db_connection.cursor()
@@ -14,7 +16,7 @@ def create_tables(db_connection):
                     (id integer primary key, 
                     username text, 
                     password text);''')
-    
+
     cursor.execute('''create table Log_entries
                     (id integer primary key,
                     user_id reference Users,
@@ -25,7 +27,7 @@ def create_tables(db_connection):
                     what_did_not_go_well text,
                     goal_for_next_session text,
                     was_last_goal_achieved bool);''')
-    
+
     db_connection.commit()
 
 
@@ -36,6 +38,5 @@ def initialize_database():
     create_tables(db_connection)
 
 
-
-if __name__=="__main__":
+if __name__ == "__main__":
     initialize_database()

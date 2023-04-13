@@ -31,6 +31,8 @@ The class responsible for functional entities is [LogEntryService](https://githu
 
 The class _LogEntryService_ has access to users and their log entries through their repositories [LogEntryRepository](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/src/repositories/log_entry_repository.py) and [UserRepository](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/src/repositories/user_repository.py) such that the repositories handle saving and retrieving the data and passes it to _LogEntryService_.
 
+The user interface accesses _LogEntryService_ only. 
+
 ```mermaid
 classDiagram
     UserRepository <|--|> LogEntryService

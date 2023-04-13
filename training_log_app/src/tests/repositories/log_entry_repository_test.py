@@ -28,15 +28,15 @@ class TestLogEntryRepository(unittest.TestCase):
 
         self.user = User('userman', 'hellowalls')  # has user_id 1
 
-    def test_create_entry_returns_entry(self):
-        attempt = self.entry_repo._create_entry(self.first_entry)
+    def testcreate_entry_returns_entry(self):
+        attempt = self.entry_repo.create_entry(self.first_entry)
 
         self.assertEqual(attempt, self.first_entry)
 
     def test_created_entry_has_correct_id_num(self):
-        first = self.entry_repo._create_entry(self.first_entry)
+        first = self.entry_repo.create_entry(self.first_entry)
 
-        second = self.entry_repo._create_entry(self.second_entry)
+        second = self.entry_repo.create_entry(self.second_entry)
 
         self.assertEqual(self.first_entry.log_id, 1)
         self.assertEqual(self.second_entry.log_id, 2)

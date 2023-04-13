@@ -8,3 +8,5 @@
 | 30.03 | 3    | Created function so user can be saved to database and a couple tests for that |
 | 31.03 | 1    | Log entries can be saved in database and tests |
 | 11.04 | 5    | Studied Tkinter and started to create user interface, user can create log entry with ui and it is saved in database |
+| 12.04 | 4    | Main parts of user interface are created. User can create new accounts, log in and create an entry |
+| 13.04 | 2    | Created tests for this week 4 and pylint checks |

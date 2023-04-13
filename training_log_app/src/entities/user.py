@@ -9,7 +9,7 @@ class User:
         user gets id after it's created from database
     '''
 
-    def __init__(self, username: str, password: str):
+    def __init__(self, username, password):
         self.username = username
         self.password = password
         self.id = None

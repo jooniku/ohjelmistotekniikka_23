@@ -12,5 +12,9 @@
 ## Week 4
 - Created user interface for adding new log entries
 - User can add a new entry and it is stored in database
+- User can create new accounts and save them to the database
+- User can then log in to those accounts
+- User can use the program with the ui and can go to different windows
+- Created appropriate tests and code quality checks
 
 

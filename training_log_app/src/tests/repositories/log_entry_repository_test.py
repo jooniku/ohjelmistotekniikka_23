@@ -22,9 +22,7 @@ class TestLogEntryRepository(unittest.TestCase):
         was_last_goal_achieved = True
         user_id = 1
 
-        self.first_entry = LogEntry(user_id, date, duration, session_style, what_went_well,
-                                    what_did_not_go_well, goal_for_next_session,
-                                    was_last_goal_achieved)
+        self.first_entry = LogEntry(user_id=1)
 
         self.second_entry = LogEntry(user_id=2)
 

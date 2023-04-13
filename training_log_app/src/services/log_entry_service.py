@@ -11,24 +11,31 @@ from repositories.user_repository import (
     user_repository as default_user_repository
 )
 
+
+class InvalidCredentialsError(Exception):
+    pass
+
+
+class UsernameAlreadyInUseError(Exception):
+    pass
+
+
 class LogEntryService:
     '''Class in charge of application logic,
     connects user and log entries'''
-    
+
     def __init__(self,
-                log_entry_repository=default_log_entry_repository,
-                user_repository=default_user_repository):
-        
+                 log_entry_repository=default_log_entry_repository,
+                 user_repository=default_user_repository):
+
         self.user = None
         self.log_entry_repository = log_entry_repository
         self.user_repository = user_repository
 
-
-    def create_log_entry(self, content:dict):
+    def create_log_entry(self, content: dict):
         entry = LogEntry()
 
-        
-        #entry.user_id = self.user.id
+        entry.user_id = self.user.id
 
         entry.date = content['date']
         entry.duration = content['duration']
@@ -37,13 +44,33 @@ class LogEntryService:
         entry.what_did_not_go_well = content['what_did_not_go_well']
         entry.goal_for_next_session = content['goal_for_next_session']
         entry.was_last_goal_achieved = content['was_last_goal_achieved']
-        
 
-        self.log_entry_repository._create_entry(entry)
+        self.log_entry_repository.create_entry(entry)
 
+    def logout(self):
+        self.user = None
 
+    def _get_user_id(self):
+        return self.user_repository.get_user_id(self.user.username)
 
-    def login(self):
-        pass
+    def login(self, username, password):
+        if not self.user_repository.compare_passwords(username, password):
+            raise InvalidCredentialsError
+
+        self.user = User(username=username, password=password)
+
+        self.user.add_id(self._get_user_id())
+
+    def create_new_user(self, username, password):
+        if self.user_repository.user_availiable(username):
+            self.user_repository.create_user(
+                User(username=username, password=password))
+        else:
+            raise UsernameAlreadyInUseError
+
+    def get_last_entry_goal(self):
+        # returns previously set goal for session
+        return self.log_entry_repository.get_last_entry_with_user(self.user)
+
 
 log_entry_service = LogEntryService()

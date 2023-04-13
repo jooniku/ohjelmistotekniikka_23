@@ -12,9 +12,9 @@ The app opens up to a login page where user can log in or create a new account. 
 
 ## Functions of the basic version
 ### Before login
-- User can register a new account
+- User can register a new account DONE
   - Username must be unique and has some specifications like minimum length of 2 and max length of 10
-- User can login with correct username and password
+- User can login with correct username and password DONE
 - If login is not successful, user is notified
 
 ### After login
@@ -23,10 +23,10 @@ The app opens up to a login page where user can log in or create a new account. 
   - The data on the from page might be *total hours trained* etc. and the precentage of goals (explained below) achieved
 - User sees last entry on the front page (or a part of it)
   - Perhaps users has a goal for each next training session and can see the goal
-- User can add new entries
+- User can add new entries DONE
 - User can view more specific data
 #### New entry page
-- User specifies information about a training session they had such as:
+- User specifies information about a training session they had such as: DONE
   - Date
   - Duration
   - Type e.g. sparring, boxing, wrestling etc.

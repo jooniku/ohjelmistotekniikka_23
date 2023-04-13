@@ -10,21 +10,27 @@ class LogEntryRepository:
         '''Constructor function'''
         self.database = db_connection
 
+    #pylint: disable=unused-argument
+    # under construction so pylint is not happy
     def get_entry_with_user(self, user: User):
         '''Return users entries.
 
         Arguments: username - which users entries
 
         Returns: Specified users entries.'''
-        pass
+        # under construction so pylint check unnecessary
+        pass #pylint: disable=unnecessary-pass
 
-    def _create_entry(self, log_entry: LogEntry):
+    def get_last_entry_with_user(self, user: User):
+        # find entry by user with largest id
+        return 'under construction'
+
+    def create_entry(self, log_entry: LogEntry):
         '''Create entry to database.
         Log_entry itself has user_id with it.
 
         Arguments: log_entry - the entry to add
-
-        Returns: boolean for successful creation'''
+        '''
         cursor = self.database.cursor()
 
         cursor.execute('''insert into Log_entries (
@@ -47,8 +53,9 @@ class LogEntryRepository:
 
         self.database.commit()
 
-        log_entry._add_id(log_id)
+        log_entry.add_id(log_id)
 
         return log_entry
+
 
 log_entry_repository = LogEntryRepository(get_database_connection())

@@ -1,18 +1,20 @@
 from tkinter import ttk, constants, OptionMenu, StringVar
 from services.log_entry_service import log_entry_service
 
+
 class NewLogEntryView:
     '''UI view for adding a log entry'''
-    def __init__(self, root) -> None:
+
+    def __init__(self, root, main_view) -> None:
         self._root = root
         self._frame = None
-        self._new_entry_view = None
+        self._main_user_view = main_view
 
         self._initialize()
 
     def pack(self):
         self._frame.pack(fill=constants.X)
-    
+
     def destroy(self):
         self._frame.destroy()
 
@@ -27,16 +29,15 @@ class NewLogEntryView:
         was_last_goal_achieved = self._was_last_goal_achieved.get()
 
         content = {'date': date, 'duration': duration, 'session_style': session_style,
-                       'what_went_well': what_went_well,
-                       'what_did_not_go_well': what_did_not_go_well,
-                       'goal_for_next_session': goal_for_next_session,
-                       'was_last_goal_achieved': was_last_goal_achieved}
+                   'what_went_well': what_went_well,
+                   'what_did_not_go_well': what_did_not_go_well,
+                   'goal_for_next_session': goal_for_next_session,
+                   'was_last_goal_achieved': was_last_goal_achieved}
 
-        if content['session_style'] != 'must choose one': # can't spam entries
+        if content['session_style'] != 'must choose one':  # can't spam entries
             log_entry_service.create_log_entry(content=content)
-            self.destroy()
+            self._main_user_view()
             # mabye call a function to let user know creation was ok
-
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -49,35 +50,46 @@ class NewLogEntryView:
         duration_label = ttk.Label(master=self._frame, text='Duration (min)')
         self._duration_entry = ttk.Entry(master=self._frame)
 
-        session_style_label = ttk.Label(master=self._frame, text='Main focus of the session')
-        style_options = ['wrestling', 'grappling', 'striking', 'sparring', 'other']
+        session_style_label = ttk.Label(
+            master=self._frame, text='Main focus of the session')
+        style_options = ['wrestling', 'grappling',
+                         'striking', 'sparring', 'other']
         self._session_style_entry = StringVar(self._frame)
         self._session_style_entry.set('must choose one')  # our default value
-        opt_session = OptionMenu(self._frame, self._session_style_entry, *style_options)
+        opt_session = OptionMenu(
+            self._frame, self._session_style_entry, *style_options)
 
-
-        whatwent_well_label = ttk.Label(master=self._frame, text='What went well?')
+        whatwent_well_label = ttk.Label(
+            master=self._frame, text='What went well?')
         self._whatwent_well_entry = ttk.Entry(master=self._frame)
 
-        whatdid_not_go_well_label = ttk.Label(master=self._frame, text='What did not go well?')
+        whatdid_not_go_well_label = ttk.Label(
+            master=self._frame, text='What did not go well?')
         self._whatdid_not_go_well_entry = ttk.Entry(master=self._frame)
 
-        goal_for_next_session_label = ttk.Label(master=self._frame, text='Goal for next session')
+        goal_for_next_session_label = ttk.Label(
+            master=self._frame, text='Goal for next session')
         self._goal_for_next_session_entry = ttk.Entry(master=self._frame)
 
-        # here import last goal from database // do later
+        previously_set_goal = log_entry_service.get_last_entry_goal()
+        prev_set_goal_label = ttk.Label(
+            master=self._frame, text=f'Previously set goal: {previously_set_goal}')
 
         self._was_last_goal_achieved = StringVar()
 
-        last_goal_achieved_label = ttk.Label(master=self._frame, text='Was last goal achieved?')
+        last_goal_achieved_label = ttk.Label(
+            master=self._frame, text='Was last goal achieved?')
 
+        # radio choice
         values = (('yes', True), ('no', False))
         i = 1
         for value in values:
-            rad_but = ttk.Radiobutton(master=self._frame, text=value[0], value=value[1], variable=self._was_last_goal_achieved)
-            rad_but.grid(row=7, column=i)
+            rad_but = ttk.Radiobutton(
+                master=self._frame, text=value[0], value=value[1], variable=self._was_last_goal_achieved)
+            rad_but.grid(row=8, column=i)
             i += 1
 
+        # build the ui
         date_label.grid(row=1, column=0)
         self._date_entry.grid(row=1, column=1)
 
@@ -96,7 +108,8 @@ class NewLogEntryView:
         goal_for_next_session_label.grid(row=6, column=0)
         self._goal_for_next_session_entry.grid(row=6, column=1)
 
-        last_goal_achieved_label.grid(row=7, column=0)
+        prev_set_goal_label.grid(row=7, column=0)
+        last_goal_achieved_label.grid(row=8, column=0)
 
         button = ttk.Button(
             master=self._frame,
@@ -105,5 +118,5 @@ class NewLogEntryView:
         )
 
         heading_label.grid(row=0, column=0)
-        
-        button.grid(row=8, column=1)
+
+        button.grid(row=9, column=1)

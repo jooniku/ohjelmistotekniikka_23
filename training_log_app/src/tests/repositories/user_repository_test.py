@@ -16,9 +16,30 @@ class TestUserRepository(unittest.TestCase):
         usr = self.repo.create_user(self.user_george)
         self.assertEqual(usr, self.user_george)
 
-    def test_after_user_creation_user_has_correct_id(self):
-        create1 = self.repo.create_user(self.user_george)
-        create2 = self.repo.create_user(self.user_sam)
+    def test_getting_user_id_returns_correct_id(self):
+        self.repo.create_user(self.user_george)
 
-        self.assertEqual(self.user_george.id, 1)
-        self.assertEqual(self.user_sam.id, 2)
+        id = self.repo.get_user_id(self.user_george.username)
+
+        self.assertEqual(id, 1)
+
+    def test_user_availiable_finds_username_already_taken(self):
+        self.repo.create_user(self.user_george)
+
+        is_availiable = self.repo.user_availiable('george')
+
+        self.assertEqual(is_availiable, False)
+
+    def test_password_comparison_returns_true_for_correct_pw(self):
+        self.repo.create_user(self.user_george)
+
+        comp = self.repo.compare_passwords('george', 'ilovedinosaurs')
+
+        self.assertEqual(comp, True)
+
+    def test_password_comparison_returns_false_for_incorrect_pw(self):
+        self.repo.create_user(self.user_george)
+
+        comp = self.repo.compare_passwords('george', 'incorrectpw')
+
+        self.assertEqual(comp, False)

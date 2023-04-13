@@ -12,9 +12,9 @@ def drop_tables(db_connection):
 def create_tables(db_connection):
     cursor = db_connection.cursor()
 
-    cursor.execute('''create table Users 
-                    (id integer primary key, 
-                    username text, 
+    cursor.execute('''create table Users
+                    (id integer primary key,
+                    username text,
                     password text);''')
 
     cursor.execute('''create table Log_entries

@@ -1,9 +1,7 @@
 import sqlite3
 from config import DATABASE_FILEPATH
 
-'''
-Create database connection
-'''
+''' Create database connection ''' #pylint: disable=pointless-string-statement
 
 db_connection = sqlite3.connect(DATABASE_FILEPATH)
 db_connection.row_factory = sqlite3.Row

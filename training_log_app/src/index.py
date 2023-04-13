@@ -3,6 +3,7 @@ from ui.ui import UI
 
 # main loop for program
 
+
 def main():
     window = Tk()
     window.title('MMA Log Book')
@@ -15,6 +16,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-    

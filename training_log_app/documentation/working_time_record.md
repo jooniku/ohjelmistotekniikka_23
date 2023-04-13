@@ -10,3 +10,4 @@
 | 11.04 | 5    | Studied Tkinter and started to create user interface, user can create log entry with ui and it is saved in database |
 | 12.04 | 4    | Main parts of user interface are created. User can create new accounts, log in and create an entry |
 | 13.04 | 3    | Created tests for this week 4 and pylint checks, also created architecture diagrams |
+| Total | 22 |

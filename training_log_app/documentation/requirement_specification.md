@@ -39,6 +39,8 @@ The app opens up to a login page where user can log in or create a new account. 
 ## Further development
 After the completion of the basic version, these are some improvements to consider
 - User can get some kind of analysis of training data to their email
+	- User could add email address to account
+- User setting tab, where user might change password etc.
 - User can edit previous entries
 - Introduction of admin user
 - Training groups that can have the same goals etc.

@@ -19,6 +19,6 @@
 
 ## Week 5
 - User can see some simple statistics on the main page
-
+- Made significant improvements to user interface
 
 

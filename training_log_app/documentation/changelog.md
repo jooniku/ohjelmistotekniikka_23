@@ -17,4 +17,8 @@
 - User can use the program with the ui and can go to different windows
 - Created appropriate tests and code quality checks
 
+## Week 5
+- User can see some simple statistics on the main page
+
+
 

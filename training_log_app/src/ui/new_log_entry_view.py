@@ -39,6 +39,9 @@ class NewLogEntryView:
             self._main_user_view()
             # mabye call a function to let user know creation was ok
 
+    def _handle_go_back(self):
+        self._main_user_view()
+
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         heading_label = ttk.Label(master=self._frame, text='Add new log entry')
@@ -56,6 +59,7 @@ class NewLogEntryView:
                          'striking', 'sparring', 'other']
         self._session_style_entry = StringVar(self._frame)
         self._session_style_entry.set('must choose one')  # our default value
+        
         opt_session = OptionMenu(
             self._frame, self._session_style_entry, *style_options)
 
@@ -111,7 +115,13 @@ class NewLogEntryView:
         prev_set_goal_label.grid(row=7, column=0)
         last_goal_achieved_label.grid(row=8, column=0)
 
-        button = ttk.Button(
+        go_back_button = ttk.Button(
+            master=self._frame,
+            text='Go back',
+            command=self._handle_go_back
+        )
+
+        save_entry_button = ttk.Button(
             master=self._frame,
             text='Save entry',
             command=self._handle_create_new_log_entry
@@ -119,4 +129,5 @@ class NewLogEntryView:
 
         heading_label.grid(row=0, column=0)
 
-        button.grid(row=9, column=1)
+        save_entry_button.grid(row=9, column=1)
+        go_back_button.grid(row=9, column=0)

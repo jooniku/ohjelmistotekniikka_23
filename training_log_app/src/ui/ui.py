@@ -1,7 +1,9 @@
+from tkinter import ttk
 from ui.new_log_entry_view import NewLogEntryView
 from ui.login_view import LoginView
 from ui.create_new_user_view import CreateNewUserView
 from ui.main_user_page_view import MainUserPageView
+from ui.statistics_view import StatisticsPageView
 
 
 class UI:
@@ -15,6 +17,12 @@ class UI:
 
         self._root = root
         self._current_view = None
+
+        self.configure_styles()
+    
+    def configure_styles(self):
+        # configure global ui styling
+        ttk.Style().configure('.', font=('Times New Roman', 12), foreground='black')
 
     def _hide_current_view(self):
         if self._current_view:
@@ -46,9 +54,8 @@ class UI:
 
         self._current_view = MainUserPageView(self._root,
                                               self._show_login_view,
-                                              self._show_new_log_entry_view)
-        # all user entries
-        # etc.
+                                              self._show_new_log_entry_view,
+                                              self._show_statistics_page_view)
         self._current_view.pack()
 
     def _show_create_new_user_view(self):
@@ -57,4 +64,12 @@ class UI:
         self._current_view = CreateNewUserView(self._root,
                                                self._show_login_view)
 
+        self._current_view.pack()
+
+    def _show_statistics_page_view(self):
+        self._hide_current_view()
+
+        self._current_view = StatisticsPageView(self._root,
+                                                self._show_main_user_page)
+        
         self._current_view.pack()

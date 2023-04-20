@@ -26,7 +26,7 @@ class UserRepository:
             return True
 
         find = find[0]
-        print(find, username)
+
         return find is username
 
     def get_user_id(self, username):

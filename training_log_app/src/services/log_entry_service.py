@@ -19,6 +19,9 @@ class InvalidCredentialsError(Exception):
 class UsernameAlreadyInUseError(Exception):
     pass
 
+class InvalidInputError(Exception):
+    pass
+
 
 class LogEntryService:
     '''Class in charge of application logic,
@@ -45,10 +48,34 @@ class LogEntryService:
         entry.goal_for_next_session = content['goal_for_next_session']
         entry.was_last_goal_achieved = content['was_last_goal_achieved']
 
+        # check if input is valid !!!!!!!!!!!!!!!!!!!!!!!
+        # if not raise InvalidInputError
+
         self.log_entry_repository.create_entry(entry)
 
     def logout(self):
         self.user = None
+
+    def get_total_time_spent_training(self):
+        # returns total training time by user
+        return self.log_entry_repository.get_total_time_spent_by_user(self.user)
+    
+    def get_precentage_of_goals_achieved(self):
+        # returns the precentage of set goals user has achieved in training
+        data = self.log_entry_repository.get_amount_of_goals_achieved_by_user(self.user)
+
+        achieved = data[0]
+        
+        # minus one since the first entry has not achieved goal
+        # so the calculation would be incorrect
+        total_goals = data[1] - 1 
+
+        return (achieved / total_goals) * 100 if total_goals > 0 else 0
+    
+    def get_last_log_entry(self):
+        # returns users latest entry
+        return self.log_entry_repository.get_last_entry_with_user(self.user)
+
 
     def _get_user_id(self):
         return self.user_repository.get_user_id(self.user.username)
@@ -70,7 +97,7 @@ class LogEntryService:
 
     def get_last_entry_goal(self):
         # returns previously set goal for session
-        return self.log_entry_repository.get_last_entry_with_user(self.user)
+        return self.log_entry_repository.get_last_entry_with_user(self.user)[7]
 
 
 log_entry_service = LogEntryService()

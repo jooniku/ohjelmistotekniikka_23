@@ -14,6 +14,11 @@ With the app, users can keep a record of their martial arts training sessions an
 ```bash
 poetry install
 ```
+2. Set up database:
+```bash
+poetry run invoke build
+```
+
 ## CLI commands
 
 ### Running the program

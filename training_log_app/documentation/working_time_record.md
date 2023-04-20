@@ -11,7 +11,7 @@
 | 12.04 | 4    | Main parts of user interface are created. User can create new accounts, log in and create an entry |
 | 13.04 | 3    | Created tests for this week 4 and pylint checks, also created architecture diagrams |
 | 19.04 | 5    | Created stats for main page which user can see, improved ui alot |
-| 20.04 | 4    | Made date selector, improved ui on new log entries, made sequence graph |
+| 20.04 | 4    | Made date selector, improved ui on new log entries, made two sequence diagrams |
 
 
 

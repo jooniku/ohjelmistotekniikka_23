@@ -35,18 +35,21 @@ class LoginView:
         self._show_create_new_user()
 
     def _define_login_frame(self):
-        self.login_frame_label = ttk.Labelframe(master=self._frame, labelanchor='n', text='Log in or create a new user')
+        self.login_frame_label = ttk.Labelframe(
+            master=self._frame, labelanchor='n', text='Log in or create a new user')
 
-        self.username_label = ttk.Label(master=self.login_frame_label, text='Username:')
+        self.username_label = ttk.Label(
+            master=self.login_frame_label, text='Username:')
         self._username_entry = ttk.Entry(master=self.login_frame_label)
 
-        self.password_label = ttk.Label(master=self.login_frame_label, text='Password:')
+        self.password_label = ttk.Label(
+            master=self.login_frame_label, text='Password:')
         self._password_entry = ttk.Entry(master=self.login_frame_label)
 
-        
     def _build_login_frame(self):
         # build the ui
-        self.login_frame_label.grid(row=0, column=0, padx=self.padx, pady=self.pady, rowspan=2)
+        self.login_frame_label.grid(
+            row=0, column=0, padx=self.padx, pady=self.pady, rowspan=2)
 
         self.username_label.grid(row=1, column=0, padx=5, pady=5)
         self._username_entry.grid(row=1, column=1, padx=5, pady=5)
@@ -54,18 +57,18 @@ class LoginView:
         self.password_label.grid(row=2, column=0, padx=5, pady=5)
         self._password_entry.grid(row=2, column=1, padx=5, pady=5)
 
-
     def _define_buttons(self):
         self.login_button = ttk.Button(master=self._frame,
-                                  text='Login',
-                                  command=self._handle_login)
+                                       text='Login',
+                                       command=self._handle_login)
 
         self.create_new_user_button = ttk.Button(master=self._frame,
-                                            text='Create new user',
-                                            command=self._handle_create_new_user_view)
+                                                 text='Create new user',
+                                                 command=self._handle_create_new_user_view)
 
     def _build_buttons(self):
-        self.create_new_user_button.grid(row=3, column=0, columnspan=1, padx=5, pady=5)
+        self.create_new_user_button.grid(
+            row=3, column=0, columnspan=1, padx=5, pady=5)
         self.login_button.grid(row=3, column=1, columnspan=1, padx=5, pady=5)
 
     def _initialize(self):
@@ -80,5 +83,3 @@ class LoginView:
 
         self._build_login_frame()
         self._build_buttons()
-
-        

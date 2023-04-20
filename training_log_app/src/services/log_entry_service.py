@@ -19,6 +19,7 @@ class InvalidCredentialsError(Exception):
 class UsernameAlreadyInUseError(Exception):
     pass
 
+
 class InvalidInputError(Exception):
     pass
 
@@ -59,23 +60,27 @@ class LogEntryService:
     def get_total_time_spent_training(self):
         # returns total training time by user
         return self.log_entry_repository.get_total_time_spent_by_user(self.user)
-    
+
+    def get_total_amount_of_training_sessions(self):
+        # returns total amount of training sessions by user
+        return self.log_entry_repository.get_amount_of_goals_achieved_by_user(self.user)[1]
+
     def get_precentage_of_goals_achieved(self):
         # returns the precentage of set goals user has achieved in training
-        data = self.log_entry_repository.get_amount_of_goals_achieved_by_user(self.user)
+        data = self.log_entry_repository.get_amount_of_goals_achieved_by_user(
+            self.user)
 
         achieved = data[0]
-        
+
         # minus one since the first entry has not achieved goal
         # so the calculation would be incorrect
-        total_goals = data[1] - 1 
+        total_goals = data[1] - 1
 
         return (achieved / total_goals) * 100 if total_goals > 0 else 0
-    
+
     def get_last_log_entry(self):
         # returns users latest entry
         return self.log_entry_repository.get_last_entry_with_user(self.user)
-
 
     def _get_user_id(self):
         return self.user_repository.get_user_id(self.user.username)

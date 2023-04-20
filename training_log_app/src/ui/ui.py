@@ -19,7 +19,7 @@ class UI:
         self._current_view = None
 
         self.configure_styles()
-    
+
     def configure_styles(self):
         # configure global ui styling
         ttk.Style().configure('.', font=('Times New Roman', 12), foreground='black')
@@ -71,5 +71,5 @@ class UI:
 
         self._current_view = StatisticsPageView(self._root,
                                                 self._show_main_user_page)
-        
+
         self._current_view.pack()

@@ -15,8 +15,7 @@ class User:
         self.id = None
 
     def add_id(self, id):
-        '''
-        Add id for object
-        Get from database upon creation
-        '''
+        '''Add id for object
+        Get from database upon creation'''
+
         self.id = id

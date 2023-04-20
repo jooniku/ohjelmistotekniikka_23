@@ -19,12 +19,12 @@ The app opens up to a login page where user can log in or create a new account. 
 
 ### After login
 #### Main page
-- User can see statistics of their training data
+- User can see statistics of their training data DONE
   - The data on the from page might be *total hours trained* etc. and the precentage of goals (explained below) achieved
-- User sees last entry on the front page (or a part of it)
+- User sees last entry on the front page (or a part of it) DONE
   - Perhaps users has a goal for each next training session and can see the goal
 - User can add new entries DONE
-- User can view more specific data
+- User can view more specific data DONE
 #### New entry page
 - User specifies information about a training session they had such as: DONE
   - Date

@@ -19,7 +19,7 @@ class LogEntry:
     '''
 
     # I believe this is the simplest way to construct an entry so pylint is disabled
-    #pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-instance-attributes
     def __init__(self, user_id=None):
         self.user_id = user_id
         self.date = None

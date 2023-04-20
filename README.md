@@ -8,6 +8,9 @@ With the app, users can keep a record of their martial arts training sessions an
 - [Changelog](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/documentation/changelog.md)
 - [Architecture description](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/documentation/architecture.md)
 
+## Releases
+- [Week 5 Release](https://github.com/jooniku/ohjelmistotekniikka_23/releases/tag/week5)
+
 ## Installation
 
 1. Install dependencies:

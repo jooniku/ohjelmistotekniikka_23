@@ -20,10 +20,9 @@
 ## Week 5
 - User can see some simple statistics on the main page
 - User can see latest entry on the main page
-
 - Made significant improvements to user interface
-- Added database to gitignore and created build method
 - User can now select date with a calendar widget
-- User can see more specific statistics on the statistics page
+- User can see more specific statistics of training, not finished
+
 
 

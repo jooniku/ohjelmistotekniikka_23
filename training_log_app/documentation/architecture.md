@@ -41,3 +41,28 @@ classDiagram
     
     UserInterface --> LogEntryService
 ```
+## Main functions
+Sequence diagrams describing the logic behind a few main functions
+
+### Logging user in
+When in the _Login window_, once user types in correct username and password, the program's control proceeds like described here.
+
+Python library _bcrypt_ is used to store and compare hashed and salted passwords.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant LogEntryService
+    participant UserRepository
+    participant bcrypt
+    
+    User-->>UI: click 'Login' button
+    UI-->>LogEntryService: login('johnny', 'bones')
+    LogEntryService-->>UserRepository: compare_passwords('johnny', 'bones')
+    UserRepository-->>bcrypt: checkpw('bones', hashed_password_from_database)
+    bcrypt-->>UserRepository: True
+    UserRepository-->>LogEntryService: True
+    LogEntryService-->>UI: User
+    UI->UI: show_main_user_page()
+```

@@ -4,5 +4,5 @@ __pycache__
 
 htmlcov
 
-./training_log_app/data/database.sqlite
-./training_log_app/data/test_database.sqlite
+training_log_app/data/database.sqlite
+training_log_app/data/test_database.sqlite

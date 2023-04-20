@@ -66,3 +66,23 @@ sequenceDiagram
     LogEntryService-->>UI: User
     UI->UI: show_main_user_page()
 ```
+### Creating a log entry
+When in the _Create new log entry window_, user can create a new log entry. The program's control proceeds like so.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI
+    participant LogEntryService
+    participant LogEntryRepository
+    participant LogEntry
+    
+    User-->>UI: fill input fields and click 'Save entry' button
+    UI-->>LogEntryService: create_log_entry(input_field_content)
+    LogEntryService-->>LogEntryRepository: create_entry(LogEntry() object)
+    LogEntryRepository-->>LogEntry: add_id(id from database)
+    LogEntryRepository-->>LogEntryService: LogEntry() object
+    UI->UI: show_main_user_page()
+    
+
+```

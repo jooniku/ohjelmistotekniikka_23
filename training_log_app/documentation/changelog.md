@@ -20,6 +20,6 @@
 ## Week 5
 - User can see some simple statistics on the main page
 - Made significant improvements to user interface
-- Added database to gitignore and created build method
+- User can see more specific statistics of training, not finished
 
 

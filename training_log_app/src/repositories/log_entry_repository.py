@@ -7,7 +7,11 @@ class LogEntryRepository:
     # class to handle database stuff for log entries
 
     def __init__(self, db_connection):
-        '''Constructor function'''
+        '''Initialization function
+
+        Args:
+            db_connection (_type_): database to connect to
+        '''
         self.database = db_connection
 
     def get_all_entries_with_user(self, user: User):
@@ -30,7 +34,7 @@ class LogEntryRepository:
         '''Returns total time (sum of durations)
         user has spent training.
 
-        Arg: user - which user
+        Args: user - which user
 
         Return: sum of durations'''
 
@@ -69,6 +73,7 @@ class LogEntryRepository:
 
     def get_last_entry_with_user(self, user: User):
         '''Return users last entry.
+
         Args: user - which user
 
         Returns: Users last entry. Or if no
@@ -117,6 +122,39 @@ class LogEntryRepository:
         log_entry.add_id(log_id)
 
         return log_entry
+
+    def get_users_session_styles_ranked(self, user: User):
+        '''Get a specific users session styles
+        with count of each of them. Then sort
+        the list and return it.
+
+        Args: user - which user'''
+
+        cursor = self.database.cursor()
+
+        data = cursor.execute('''select session_style, count(session_style)
+                                from Log_entries where
+                                user_id=? group by session_style
+                                ''', [user.id]).fetchall()
+
+        self.database.commit()
+
+        return sorted([(i[1], i[0]) for i in data if i[0] != 'select'], reverse=True)
+
+    def get_all_training_dates_by_user(self, user: User):
+        '''Get all training session dates
+        by specific user from the database as a list.
+
+        Args: user - which users data
+        '''
+        cursor = self.database.cursor()
+
+        dates = cursor.execute('''select date from Log_entries 
+                        where user_id=?''', [user.id]).fetchall()
+
+        self.database.commit()
+
+        return [date[0] for date in dates]
 
 
 log_entry_repository = LogEntryRepository(get_database_connection())

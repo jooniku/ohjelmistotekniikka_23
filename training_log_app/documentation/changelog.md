@@ -24,5 +24,8 @@
 - User can now select date with a calendar widget
 - User can see more specific statistics of training, not finished
 
+## Week 6
+- User can see a graph of weekly training sessions from current year in the statistics tab
+- All necessary input validation completed
 
 

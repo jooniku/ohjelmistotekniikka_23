@@ -29,7 +29,11 @@ class LoginView:
             self._show_main_page()
 
         except InvalidCredentialsError:
-            print('Wrong password or username does not exist')
+            error_label = ttk.Label(master=self.login_frame_label,
+                                        text='Wrong username or password!',
+                                        foreground='red')
+            error_label.grid(row=3, column=0, columnspan=2)
+
 
     def _handle_create_new_user_view(self):
         self._show_create_new_user()
@@ -46,16 +50,15 @@ class LoginView:
             master=self.login_frame_label, text='Password:')
         self._password_entry = ttk.Entry(master=self.login_frame_label)
 
-    def _build_login_frame(self):
-        # build the ui
         self.login_frame_label.grid(
-            row=0, column=0, padx=self.padx, pady=self.pady, rowspan=2)
+            row=0, column=0, columnspan=2, padx=self.padx, pady=self.pady, rowspan=2)
 
         self.username_label.grid(row=1, column=0, padx=5, pady=5)
         self._username_entry.grid(row=1, column=1, padx=5, pady=5)
 
         self.password_label.grid(row=2, column=0, padx=5, pady=5)
         self._password_entry.grid(row=2, column=1, padx=5, pady=5)
+
 
     def _define_buttons(self):
         self.login_button = ttk.Button(master=self._frame,
@@ -66,7 +69,6 @@ class LoginView:
                                                  text='Create new user',
                                                  command=self._handle_create_new_user_view)
 
-    def _build_buttons(self):
         self.create_new_user_button.grid(
             row=3, column=0, columnspan=1, padx=5, pady=5)
         self.login_button.grid(row=3, column=1, columnspan=1, padx=5, pady=5)
@@ -81,5 +83,3 @@ class LoginView:
         self._define_login_frame()
         self._define_buttons()
 
-        self._build_login_frame()
-        self._build_buttons()

@@ -12,9 +12,9 @@
 | 13.04 | 3    | Created tests for this week 4 and pylint checks, also created architecture diagrams |
 | 19.04 | 5    | Created stats for main page which user can see, improved ui alot |
 | 20.04 | 4    | Made date selector, improved ui on new log entries, made two sequence diagrams |
+| 25.04 | 5    | Created graph and other stats, did input validation and error handling, improved ui |
 
 
 
 
-
-| Total | 31 |
+| Total | 36 |

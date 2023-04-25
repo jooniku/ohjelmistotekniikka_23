@@ -1,7 +1,7 @@
 from tkinter import ttk, constants, OptionMenu, StringVar
 from tkcalendar import DateEntry
 from datetime import datetime
-from services.log_entry_service import log_entry_service
+from services.log_entry_service import log_entry_service, InvalidInputError
 
 
 class NewLogEntryView:
@@ -35,9 +35,17 @@ class NewLogEntryView:
                    'what_did_not_go_well': what_did_not_go_well,
                    'goal_for_next_session': goal_for_next_session,
                    'was_last_goal_achieved': was_last_goal_achieved}
+        
+        try:
+            log_entry_service.create_log_entry(content=content)
+            self._main_user_view()
+    
+        except InvalidInputError:
+            self.error_label = ttk.Label(master=self._frame,
+                                        text='Invalid or empty field!',
+                                        foreground='red')
+            self.error_label.grid(row=0, column=1)
 
-        log_entry_service.create_log_entry(content=content)
-        self._main_user_view()
 
     def _handle_go_back(self):
         self._main_user_view()

@@ -6,8 +6,6 @@ from repositories.log_entry_repository import (
     log_entry_repository as default_log_entry_repository
 )
 
-# both call get database connection, might not be good
-
 from repositories.user_repository import (
     user_repository as default_user_repository
 )
@@ -27,7 +25,16 @@ class InvalidInputError(Exception):
 
 class LogEntryService:
     '''Class in charge of application logic,
-    connects user and log entries'''
+    connects user and log entry/user repositories.
+    Is accessed by user via UI.
+
+    Main functions:
+        create_log_entry: creates a log entry for user
+        create_new_user: creates new user
+        login: logs user in
+        logout: logs user out
+        get_log_entry_with_id: gets a specific log entry by user
+    '''
 
     def __init__(self,
                  log_entry_repository=default_log_entry_repository,
@@ -47,7 +54,7 @@ class LogEntryService:
         '''
         entry = LogEntry()
 
-        entry.user_id = self.user.id
+        entry.user_id = self.user.user_id
 
         entry.date = content['date']
         entry.duration = content['duration']
@@ -63,12 +70,25 @@ class LogEntryService:
         except ValueError as exc:
             raise InvalidInputError from exc
 
-        self.log_entry_repository.create_entry(entry)
+        self.log_entry_repository.create_entry(user=self.user, log_entry=entry)
 
     def logout(self):
         '''Logs user out'''
 
         self.user = None
+
+    def get_latest_log_id(self):
+        '''Returns user specific last
+        added logs id.
+
+        Returns:
+            int: users latest logs id
+        '''
+        logs_id = self.get_last_log_entry()[1]
+
+        if logs_id == 'no data':
+            return None
+        return logs_id
 
     def get_total_time_spent_training(self):
         '''Accesses log_entry_repository to 
@@ -100,21 +120,34 @@ class LogEntryService:
         return (achieved / total_goals) * 100 if total_goals > 0 else 0
 
     def get_last_log_entry(self):
-        # returns users latest entry
-        return self.log_entry_repository.get_last_entry_with_user(self.user)
+        '''Returns users latest entry by 
+        id.'''
+        last_id = self.log_entry_repository.get_users_last_entry_id(self.user)
 
-    def _get_user_id(self):
+        return self.get_log_entry_with_id(last_id)
+
+    def __get_user_id(self):
+        '''Get user id using the 
+        user repository.'''
         return self.user_repository.get_user_id(self.user.username)
 
     def login(self, username, password):
+        '''Log user in using user repository.
+        Also raises error if wrong password etc.
+        Then add correct id to user object.'''
+
         if not self.user_repository.compare_passwords(username, password):
             raise InvalidCredentialsError
 
         self.user = User(username=username, password=password)
 
-        self.user.add_id(self._get_user_id())
+        self.user.add_id(self.__get_user_id())
 
     def create_new_user(self, username, password):
+        '''Create new user. 
+        Do input validation and check if username taken.
+        Save user to database with user repository.'''
+
         if username == '' or password == '' or ' ' in password or ' ' in username:
             raise InvalidInputError
 
@@ -123,11 +156,6 @@ class LogEntryService:
                 User(username=username, password=password))
         else:
             raise UsernameAlreadyInUseError
-        
-
-    def get_last_entry_goal(self):
-        # returns previously set goal for session
-        return self.log_entry_repository.get_last_entry_with_user(self.user)[7]
 
     def get_current_training_instances(self):
         '''Using log_entry_repository gets 
@@ -186,6 +214,22 @@ class LogEntryService:
         ranked by most common style to least
         common.'''
         return self.log_entry_repository.get_users_session_styles_ranked(self.user)
+
+    def get_log_entry_with_id(self, log_id: int):
+        '''Returns users specific log entry
+        using the log entry repository.
+
+        Args:
+            log_id (int): entry's id
+
+        Returns:
+            LogEntry: the entry
+        '''
+
+        entry = self.log_entry_repository.get_users_log_entry_by_id(
+            user=self.user, log_id=log_id)
+
+        return ['no data' for _ in range(9)] if log_id is None or entry is None else entry[0]
 
 
 log_entry_service = LogEntryService()

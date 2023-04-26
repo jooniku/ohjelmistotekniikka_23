@@ -4,7 +4,16 @@ from database_connection import get_database_connection
 
 
 class UserRepository:
-    # class in charge of database operations for users
+    '''Class responsible for
+    the connection between
+    database and LogEntryService
+    class. Handles User objects.
+
+    Main functions:
+        user_availiable: checks if username is availiable
+        create_user: hashes password and saves new user to database
+        compare_passwords: using bcrypt, checks if password is correct
+    '''
 
     def __init__(self, db_connection):
         self._db_connection = db_connection
@@ -24,10 +33,7 @@ class UserRepository:
 
         if find is None:
             return True
-
-        find = find[0]
-
-        return find is username
+        return False
 
     def get_user_id(self, username):
         '''Get a specified users id

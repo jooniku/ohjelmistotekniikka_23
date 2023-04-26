@@ -3,8 +3,7 @@ from services.log_entry_service import log_entry_service
 
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
-                                               NavigationToolbar2Tk)
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 
 
 class StatisticsPageView:
@@ -28,24 +27,33 @@ class StatisticsPageView:
         self._login_view()
 
     def _style_config(self):
-        # style the window, currently doesn't work
+        '''Style the statistics page.
+        '''
 
         self.style = ttk.Style()
 
-        self.style.configure('label_frame.TLabelFrame', background='red')
+        self.style.configure('background.TFrame', background='#2C3E50')
+        self.style.configure('navbar.TFrame', background='#23313f', relief='flat')
+        self.style.configure('navbar_text.TLabel', background='#23313f', foreground='#ECF0F1')
+        self.style.configure('inner_frame.TFrame', background='#31404f', relief='sunken')
+        self.style.configure('text.TLabel', background='#2C3E50', foreground='#ECF0F1')
+        self.style.configure('inside_text.TLabel', background='#31404f', foreground='#ECF0F1')
+        self.style.configure('button.TButton', background='#23313f', foreground='#ECF0F1', relief='flat')
+        self.style.map('button.TButton', relief=[('active', 'ridge')], background=[('active', '#31404f')])
+        self.style.configure('input_field.TEntry', background='#ECF0F1')
 
     def _handle_go_back(self):
         self._main_user_page()
 
     def _define_statistics_frame(self):
         self.heading_label = ttk.Label(
-            master=self._frame, text='Statistics', justify='center')
+            master=self._frame, text='Statistics', justify='center', style='text.TLabel', padding=(0,0,0,10))
 
         self.back_button = ttk.Button(
-            master=self._frame, text='Back', command=self._handle_go_back)
+            master=self._frame, text='Back', command=self._handle_go_back, style='button.TButton')
 
         self.heading_label.grid(row=0, column=0, columnspan=2)
-        self.back_button.grid(row=5, column=1, padx=5, pady=5)
+        self.back_button.grid(row=6, column=1, padx=5, pady=5)
 
         self._define_goals_achieved_frame()
         self._define_total_sessions_frame()
@@ -61,18 +69,17 @@ class StatisticsPageView:
         graph_data = log_entry_service.get_weekly_user_training_instances_this_year()
 
         figure = Figure(figsize=(6, 3),
-                        dpi=75,
-                        facecolor='lightgrey',
-                        layout='tight'
-                        )
+                        dpi=80,
+                        facecolor='#31404f',
+                        layout='tight')
 
         ax = figure.add_subplot()
 
-        bar = ax.bar([i for i in range(1, 53)], graph_data, color='darkred')
+        bar = ax.bar([i for i in range(1, 53)], graph_data, color='#3498DB')
 
-        ax.set_xlabel('week')
+        ax.set_xlabel('week', color='#ECF0F1')
         ax.set_xlim([1, 52])
-        ax.set_ylabel('sessions')
+        ax.set_ylabel('sessions', color='#ECF0F1')
         ax.set_ylim([0, 7])
 
         canvas = FigureCanvasTkAgg(
@@ -80,7 +87,6 @@ class StatisticsPageView:
 
         canvas.draw()
 
-        canvas.get_tk_widget().configure(background='black')
         canvas.get_tk_widget().pack()
 
     def _define_training_sessions_weekly_frame(self):
@@ -91,19 +97,26 @@ class StatisticsPageView:
         self._create_graph_of_weekly_session_this_year()
 
         self.training_sessions_weekly_frame.grid(
-            row=4, column=0, columnspan=2, padx=self.padx, pady=self.pady)
+            row=5, column=0, columnspan=2, padx=self.padx, pady=self.pady)
 
     def _define_total_sessions_frame(self):
-        self.total_sessions_frame = ttk.Labelframe(master=self._frame,
-                                                   text='Total training sessions',
-                                                   labelanchor='n')
+        self.total_sessions_frame = ttk.Frame(master=self._frame, style='inner_frame.TFrame')
 
-        self.total_sessions_label = ttk.Label(master=self.total_sessions_frame,
-                                              text=f'{log_entry_service.get_total_amount_of_training_sessions()}')
+        self.total_sessions_label = ttk.Label(master=self._frame,
+                                              text='Total training sessions',
+                                              style='text.TLabel',
+                                              justify='center',
+                                              padding=(0,10,0,0))
+        
+        self.total_sessions_label_num = ttk.Label(master=self.total_sessions_frame,
+                                              text=f'{log_entry_service.get_total_amount_of_training_sessions()}',
+                                              style='inside_text.TLabel',
+                                              justify='center')
 
-        self.total_sessions_frame.grid(
-            row=1, column=0, padx=self.padx, pady=self.pady)
-        self.total_sessions_label.grid(padx=self.padx, pady=self.pady)
+        self.total_sessions_label.grid(row=1, column=0)
+
+        self.total_sessions_frame.grid(row=2, column=0, padx=10, pady=10)
+        self.total_sessions_label_num.grid(padx=10, pady=10)
 
     def _define_training_instances_frame(self):
         self.training_instances_frame = ttk.Labelframe(master=self._frame,
@@ -119,7 +132,7 @@ class StatisticsPageView:
                                     text=f'Week: {data[2]}')
 
         self.training_instances_frame.grid(
-            row=3, column=1, padx=self.padx, pady=self.pady)
+            row=4, column=1, padx=self.padx, pady=self.pady)
 
         self.year_label.grid(row=1, padx=self.padx, pady=self.pady)
         self.month_label.grid(row=2, padx=self.padx, pady=self.pady)
@@ -131,7 +144,7 @@ class StatisticsPageView:
                                                         labelanchor='n')
 
         self.rank_session_styles_frame.grid(
-            row=3, column=0, padx=self.padx, pady=self.pady)
+            row=4, column=0, padx=self.padx, pady=self.pady)
 
         ranking_data = log_entry_service.get_users_session_styles_ranked()
 
@@ -146,19 +159,27 @@ class StatisticsPageView:
             place.grid(row=rank, column=0, padx=self.padx, pady=self.pady)
 
     def _define_goals_achieved_frame(self):
-        self.precentage_of_goals_achieved_frame = ttk.Labelframe(master=self._frame,
-                                                                 text='Precentage of goals achieved',
-                                                                 labelanchor='n')
+        self.precentage_of_goals_achieved_frame = ttk.Frame(master=self._frame, style='inner_frame.TFrame')
+        self.precentage_of_goals_achieved_label = ttk.Label(master=self._frame,
+                                                            text='Precentage of goals achieved',
+                                                            justify='center',
+                                                            style='text.TLabel',
+                                                            padding=(0,10,0,0))
+
         self.goals_achieved_label = ttk.Label(master=self.precentage_of_goals_achieved_frame,
-                                              text=f'{log_entry_service.get_precentage_of_goals_achieved():.0f}%')
+                                              text=f'{log_entry_service.get_precentage_of_goals_achieved():.0f}%',
+                                              style='inside_text.TLabel')
+
+        self.precentage_of_goals_achieved_label.grid(row=1, column=1)
 
         self.precentage_of_goals_achieved_frame.grid(
-            row=1, column=1, padx=self.padx, pady=self.pady)
-        self.goals_achieved_label.grid(padx=self.padx, pady=self.pady)
+            row=2, column=1, padx=10, pady=10)
+        
+        self.goals_achieved_label.grid(padx=10, pady=10)
 
     def _initialize(self):
         # initialize window
-        self._frame = ttk.Frame(master=self._root, height=50, width=50)
+        self._frame = ttk.Frame(master=self._root, style='background.TFrame')
 
         self._style_config()
 

@@ -12,10 +12,10 @@ class User:
     def __init__(self, username, password):
         self.username = username
         self.password = password
-        self.id = None
+        self.user_id = None
 
-    def add_id(self, id):
-        '''Add id for object
-        Get from database upon creation'''
+    def add_id(self, user_id):
+        '''Add id for User object.
+        Get from database upon creation.'''
 
-        self.id = id
+        self.user_id = user_id

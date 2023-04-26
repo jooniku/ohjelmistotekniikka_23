@@ -27,5 +27,8 @@
 ## Week 6
 - User can see a graph of weekly training sessions from current year in the statistics tab
 - All necessary input validation completed
+- User can browse their logs in a separate page
+- Changed database structure to have log_ids for each user
+- Significantly improved UI with styling
 
 

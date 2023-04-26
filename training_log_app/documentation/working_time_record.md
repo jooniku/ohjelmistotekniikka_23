@@ -13,8 +13,7 @@
 | 19.04 | 5    | Created stats for main page which user can see, improved ui alot |
 | 20.04 | 4    | Made date selector, improved ui on new log entries, made two sequence diagrams |
 | 25.04 | 5    | Created graph and other stats, did input validation and error handling, improved ui |
+| 26.04 | 6    | Added log_id to database structure, many hours styling UI. Created browse log entries page. |
 
 
-
-
-| Total | 36 |
+| Total | 42 |

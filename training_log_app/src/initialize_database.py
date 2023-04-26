@@ -19,6 +19,7 @@ def create_tables(db_connection):
 
     cursor.execute('''create table Log_entries
                     (id integer primary key,
+                    log_id integer,
                     user_id reference Users,
                     date text,
                     duration integer,
@@ -26,7 +27,7 @@ def create_tables(db_connection):
                     what_went_well text,
                     what_did_not_go_well text,
                     goal_for_next_session text,
-                    was_last_goal_achieved bool);''')
+                    was_last_goal_achieved integer);''')
 
     db_connection.commit()
 

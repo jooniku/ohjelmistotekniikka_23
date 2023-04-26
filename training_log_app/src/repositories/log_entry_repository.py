@@ -4,15 +4,42 @@ from database_connection import get_database_connection
 
 
 class LogEntryRepository:
-    # class to handle database stuff for log entries
+    '''Class to handle the connection between
+    LogEntryService and the database. Handles
+    the LogEntry objects.
+    
+    Main functions:
+        create_entry: saves new log entry to database
+        get_users_log_entry_by_id: get users entry with entry's id
+    '''
 
     def __init__(self, db_connection):
         '''Initialization function
 
         Args:
-            db_connection (_type_): database to connect to
+            db_connection: database to connect to
         '''
         self.database = db_connection
+
+    def get_users_log_entry_by_id(self, user: User, log_id: int):
+        '''Get a specific users specific log entry
+        from database. 
+
+        Args:
+            user (User): which user
+            log_id (int): logs user specific id
+        '''
+        cursor = self.database.cursor()
+
+        entry = cursor.execute('''select * from
+                                Log_entries
+                                where log_id=? and
+                                user_id=?''',
+                               [log_id, user.user_id]).fetchall()
+
+        self.database.commit()
+
+        return entry
 
     def get_all_entries_with_user(self, user: User):
         '''Return users entries.
@@ -24,7 +51,7 @@ class LogEntryRepository:
         cursor = self.database.cursor()
 
         entry_list = cursor.execute('''select * from Log_entries where
-                                 user_id=? order by id desc''', [user.id]).fetchone()
+                                 user_id=? order by log_id desc''', [user.user_id]).fetchone()
 
         self.database.commit()
 
@@ -42,7 +69,7 @@ class LogEntryRepository:
 
         time = cursor.execute('''select ifnull(sum(duration),0)
                                 from Log_entries where user_id=?''',
-                              [user.id]).fetchone()
+                              [user.user_id]).fetchone()
 
         return time[0]
 
@@ -61,45 +88,49 @@ class LogEntryRepository:
         goals_achieved = cursor.execute('''select ifnull(count(*),0)
                                         from Log_entries where user_id=?
                                         and was_last_goal_achieved=1''',
-                                        [user.id]).fetchone()[0]
+                                        [user.user_id]).fetchone()[0]
 
         amount_of_entries = cursor.execute('''select ifnull(count(*),0)
                                         from Log_entries where user_id=?''',
-                                           [user.id]).fetchone()[0]
+                                           [user.user_id]).fetchone()[0]
 
         self.database.commit()
 
         return goals_achieved, amount_of_entries
 
-    def get_last_entry_with_user(self, user: User):
-        '''Return users last entry.
+    def get_users_last_entry_id(self, user: User):
+        '''Return users last entry's id.
 
         Args: user - which user
-
-        Returns: Users last entry. Or if no
-        last entry, then text saying so.'''
+        '''
 
         cursor = self.database.cursor()
 
-        entry = cursor.execute('''select * from Log_entries
+        entry_id = cursor.execute('''select log_id from Log_entries
                                 where user_id=? 
                                 order by id desc limit 1''',
-                               [user.id]).fetchall()
+                                  [user.user_id]).fetchone()
 
         self.database.commit()
 
-        # if no entries a completely different frame needs to be run
-        return 'No previous entries' if len(entry) == 0 else list(entry[0])
+        return None if entry_id is None else entry_id[0]
 
-    def create_entry(self, log_entry: LogEntry):
-        '''Create entry to database.
-        Log_entry itself has user_id with it.
+    def create_entry(self, user: User, log_entry: LogEntry):
+        '''Create a new log entry to database.
 
-        Arguments: log_entry - the entry to add
+        Args:
+            user (User): which users entry
+            log_entry (LogEntry): the entry content
         '''
         cursor = self.database.cursor()
 
+        last_log_id = self.get_users_last_entry_id(user=user)
+        if last_log_id is None:
+            last_log_id = 0
+        last_log_id += 1
+
         cursor.execute('''insert into Log_entries (
+                    log_id,
                     user_id,
                     date,
                     duration,
@@ -108,20 +139,13 @@ class LogEntryRepository:
                     what_did_not_go_well,
                     goal_for_next_session,
                     was_last_goal_achieved) 
-                    values (?,?,?,?,?,?,?,?)''',
-                       [log_entry.user_id, log_entry.date, log_entry.duration,
+                    values (?,?,?,?,?,?,?,?,?)''',
+                       [last_log_id, log_entry.user_id, log_entry.date, log_entry.duration,
                         log_entry.session_style, log_entry.what_went_well,
                         log_entry.what_did_not_go_well, log_entry.goal_for_next_session,
                         log_entry.was_last_goal_achieved])
 
-        log_id = cursor.execute('''select max(id) from Log_entries where user_id=?''', [
-                                log_entry.user_id]).fetchone()[0]
-
         self.database.commit()
-
-        log_entry.add_id(log_id)
-
-        return log_entry
 
     def get_users_session_styles_ranked(self, user: User):
         '''Get a specific users session styles
@@ -135,7 +159,7 @@ class LogEntryRepository:
         data = cursor.execute('''select session_style, count(session_style)
                                 from Log_entries where
                                 user_id=? group by session_style
-                                ''', [user.id]).fetchall()
+                                ''', [user.user_id]).fetchall()
 
         self.database.commit()
 
@@ -149,8 +173,8 @@ class LogEntryRepository:
         '''
         cursor = self.database.cursor()
 
-        dates = cursor.execute('''select date from Log_entries 
-                        where user_id=?''', [user.id]).fetchall()
+        dates = cursor.execute('''select date from Log_entries
+                        where user_id=?''', [user.user_id]).fetchall()
 
         self.database.commit()
 

@@ -35,17 +35,16 @@ class NewLogEntryView:
                    'what_did_not_go_well': what_did_not_go_well,
                    'goal_for_next_session': goal_for_next_session,
                    'was_last_goal_achieved': was_last_goal_achieved}
-        
+
         try:
             log_entry_service.create_log_entry(content=content)
             self._main_user_view()
-    
+
         except InvalidInputError:
             self.error_label = ttk.Label(master=self._frame,
-                                        text='Invalid or empty field!',
-                                        foreground='red')
+                                         text='Invalid or empty field!',
+                                         foreground='red')
             self.error_label.grid(row=0, column=1)
-
 
     def _handle_go_back(self):
         self._main_user_view()
@@ -115,7 +114,7 @@ class NewLogEntryView:
                                                          padding=5)
 
         self._previously_set_goal_label = ttk.Label(master=self._previously_set_goal_frame,
-                                                    text=f'{log_entry_service.get_last_entry_goal()}',
+                                                    text=f'{log_entry_service.get_last_log_entry()[7]}',
                                                     wraplength=150,
                                                     justify='center')
 

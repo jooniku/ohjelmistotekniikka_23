@@ -30,5 +30,7 @@
 - User can browse their logs in a separate page
 - Changed database structure to have log_ids for each user
 - Significantly improved UI with styling
+- Improved architecture documentation
+- Created user manual
 
 

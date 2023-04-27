@@ -29,7 +29,7 @@ You can log in by writing an existing username and a corresponding password in t
 If the login is successful, you are transferred to the user's main page.
 
 ## Creating a new user
-You can create a new user by clicking the "Create new user"-button. 
+You can create a new user by clicking the "Create new user"-button on the login page. 
 
 ![create_new_user_page](./photos/create_new_user_page.png)
 

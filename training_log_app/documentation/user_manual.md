@@ -109,4 +109,6 @@ Here you can see some statistics about your training sessions.
   - **Month:** Here you can see how many sessions you have completed this month.
   - **Week:** Here you can see how many sessions you have completed this week.
 
-**Graph of weekly training sessions this year:** 
+**Graph of weekly training sessions this year:** shows a bar graph with amount of sessions on the y-axis and weeks on the x-axis. The whole graph represents current year. For example, if on week 15 you trained 4 times, then on x-axis 15 would have a bar with the height of 4.
+
+You can go back to main page by clicking the "Back"-button.

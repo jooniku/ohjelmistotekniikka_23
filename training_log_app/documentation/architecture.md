@@ -3,7 +3,7 @@
 ## Architecture
 The program's architecture follows the three-tier architecture model. The layer structure is the following:
 
-![Layerstructure](./training_log_app/photos/architecture_layer_structure.png)
+![Layerstructure](./photos/architecture_layer_structure.png)
 
 Layer _ui_ has the code responsible for the user interface,
  _services_ has the code responsible for application logic and

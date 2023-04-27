@@ -44,9 +44,9 @@ This is the main page of the user. You are transferred here after login.
 
 ![user_main_page](./photos/user_main_page.png)
 
-Here you can see your total training time in hours and in days.
-
 On the top left corner you'll see which user you're logged in as.
+
+Here you can see your total training time in hours and days.
 
 You can also see your latest entry if you have one. If you don't, you'll see an entry with "no data" as the fields.
 
@@ -64,11 +64,11 @@ By clicking the "New Log Entry"-button on the main page, you can create a new en
 
 There are several different input fields where you can write information. Here are the intended uses of them.
 
-**Date:** selector pops up to choose the date of the session. If given invalid input, it resets back to current day.
+**Date:** selector pops up to choose the date of the session. Preset with current date. If given invalid input, it resets back to current day.
 
 **Duration:** write in minutes the length of the session. _**Note:** This is a required field_
 
-**Session style selector**: you can choose which style the session was from preset styles. This is done so statistics can be calculated about the session styles. If none is chose, the preset of _select_ remains. This affects the statistics of session styles.
+**Session style selector**: you can choose which style the session was from preset styles. This is done so statistics can be calculated about the session styles. If none is chosen, the preset of _select_ remains. This affects the statistics of session styles later described.
 
 **What went well:** here you can write about what went well for the session. It is **not** required field.
 

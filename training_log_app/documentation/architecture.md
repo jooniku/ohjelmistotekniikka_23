@@ -43,7 +43,8 @@ classDiagram
       goal_for_next_session
       was_last_goal_achieved
       user_id
-      log_entry_id
+      log_id
+      id
     }
 ```
 

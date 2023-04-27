@@ -1,6 +1,17 @@
 # Program architecture and Logic
 
-## Logical data model
+## Architecture
+The program's architecture follows the three-tier architecture model. The layer structure is the following:
+
+![Layerstructure](./photos/architecture_layer_structure.png)
+
+Layer _ui_ has the code responsible for the user interface,
+ _services_ has the code responsible for application logic and
+ _repositories_ has the code responsible for data persistence mechanisms and data access.
+Layer _entities_ has the code responsible for describing application's data models.  
+
+
+## Logic
 The classes that create the logical data model of the program are [User](https://github.com/jooniku/ohjelmistotekniikka_23/tree/master/training_log_app/src/entities/user.py) and [LogEntry](https://github.com/jooniku/ohjelmistotekniikka_23/tree/master/training_log_app/src/entities/log_entry.py), which describe users and log entries made by users.
 
 ```mermaid

@@ -56,3 +56,32 @@ You can go to several different pages from the main page.
 - Statistics
 
 You can also **log out** by clicking the "Log out" button on the top right corner. Then you'll be transferred to the login page.
+
+## Creating a new log entry
+By clicking the "New Log Entry"-button on the main page, you can create a new entry.
+
+![new_log_entry_page] __styling is unfinished so no photo yet__
+
+There are several different input fields where you can write information. Here are the intended uses of them.
+
+**Date:** selector pops up to choose the date of the session. If given invalid input, it resets back to current day.
+
+**Duration:** write in minutes the length of the session. _**Note:** This is a required field_
+
+**Session style selector**: you can choose which style the session was from preset styles. This is done so statistics can be calculated about the session styles. If none is chose, the preset of _select_ remains. This affects the statistics of session styles.
+
+**What went well:** here you can write about what went well for the session. It is **not** required field.
+
+**What did not go well:** here you can write about what didn't go well for the session or what you might want to improve upon. It is **not** a required field.
+
+**Previously set goal:** here you can see the "goal for next session" entry for the previously added entry. 
+
+**Was previously set goal achieved?:** you can choose from _yes_ or _no_, wheter you achieved the goal previously set. If none is chosen, it is interpreted as _no_.
+
+**Goal for next session:** here you can write a goal to try to achieve for the next session. It is **not** a required field.
+
+To save the entry, click the "Save entry"-button. You'll be redirected back to the main page.
+
+You can also go back and discard the new entry by clicking the "Back"-button. Then you'll be redirected back to the main page.
+
+

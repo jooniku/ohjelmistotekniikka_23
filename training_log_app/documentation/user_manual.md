@@ -40,9 +40,11 @@ _**Note:** Neither input can contain spaces._
 If the creation is successful, you are prompted back to the login page to log in with the new account.
 
 ## Main page
-Here you can see your total training time in hours and in days.
+This is the main page of the user. You are transferred here after login.
 
 ![user_main_page](./photos/user_main_page.png)
+
+Here you can see your total training time in hours and in days.
 
 On the top left corner you'll see which user you're logged in as.
 
@@ -53,4 +55,4 @@ You can go to several different pages from the main page.
 - Browse logs
 - Statistics
 
-You can also **log out** by clicking the "Log out" button on the top right corner. Then you're transferred to the login page.
+You can also **log out** by clicking the "Log out" button on the top right corner. Then you'll be transferred to the login page.

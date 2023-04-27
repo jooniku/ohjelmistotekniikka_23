@@ -1,4 +1,4 @@
-# User Manual
+# User manual
 
 ## Running the application
 

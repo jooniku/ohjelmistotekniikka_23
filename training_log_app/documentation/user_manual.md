@@ -84,4 +84,29 @@ To save the entry, click the "Save entry"-button. You'll be redirected back to t
 
 You can also go back and discard the new entry by clicking the "Back"-button. Then you'll be redirected back to the main page.
 
+## Browsing log entries
+By clicking the "Browse logs"-button on the main page, you are directed to this page.
 
+![browse_log_entries_page] __styling is unfinished so no photo yet__
+
+Entries on this page are displayed in the same format as the one on the main page. Here you'll first see your last log entry. By clicking "Previous" and "Next" -buttons you can browse through the entries.
+
+You can go back to the main page by clicking the "Back"-button.
+
+## Viewing statistics
+By clicking the "Statistics"-button on the main page, you'll be directed here.
+
+Here you can see some statistics about your training sessions.
+
+**Total training sessions:** This tells the total amount of sessions you have entered.
+
+**Precentage of goals achieved:** This tells you the precentage of how many times you have achieved a previously set goal.
+
+**Session styles ranked:** Here you can see the different styles ranked by how many sessions you have completed of them.
+
+**Training sessions this:**
+  - **Year:** Here you can see how many sessions you have completed this year.
+  - **Month:** Here you can see how many sessions you have completed this month.
+  - **Week:** Here you can see how many sessions you have completed this week.
+
+**Graph of weekly training sessions this year:** 

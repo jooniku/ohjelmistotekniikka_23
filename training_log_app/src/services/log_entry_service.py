@@ -39,6 +39,12 @@ class LogEntryService:
     def __init__(self,
                  log_entry_repository=default_log_entry_repository,
                  user_repository=default_user_repository):
+        '''Initializes the service class.
+
+        Args:
+            log_entry_repo: LogEntryRepository object to use
+            user_repository: UserRepository object to use
+        '''
 
         self.user = None
         self.log_entry_repository = log_entry_repository
@@ -52,6 +58,7 @@ class LogEntryService:
         Args:
             content (dict): content of log entry
         '''
+
         entry = LogEntry()
 
         entry.user_id = self.user.user_id
@@ -73,7 +80,8 @@ class LogEntryService:
         self.log_entry_repository.create_entry(user=self.user, log_entry=entry)
 
     def logout(self):
-        '''Logs user out'''
+        '''Logs user out
+        '''
 
         self.user = None
 
@@ -84,6 +92,7 @@ class LogEntryService:
         Returns:
             int: users latest logs id
         '''
+
         logs_id = self.get_last_log_entry()[1]
 
         if logs_id == 'no data':
@@ -92,21 +101,30 @@ class LogEntryService:
 
     def get_total_time_spent_training(self):
         '''Accesses log_entry_repository to 
-        get total time spent training by user.'''
+        get total time spent training by user.
+
+        Returns: value given by log_entry_repository
+        '''
 
         return self.log_entry_repository.get_total_time_spent_by_user(self.user)
 
     def get_total_amount_of_training_sessions(self):
         '''Accesses log_entry_repository to
         get total amount of training sessions
-        by user.'''
+        by user.
+        
+        Returns: value given by log_entry_repository
+        '''
 
         return self.log_entry_repository.get_amount_of_goals_achieved_by_user(self.user)[1]
 
     def get_precentage_of_goals_achieved(self):
         '''Calculates the precentage of set goals that the user
         has achieved (marked so in the log entry page)
-        via log_entry_repository.'''
+        via log_entry_repository.
+        
+        Returns: Achieved goals as a precentage integer
+        '''
 
         data = self.log_entry_repository.get_amount_of_goals_achieved_by_user(
             self.user)
@@ -120,21 +138,34 @@ class LogEntryService:
         return (achieved / total_goals) * 100 if total_goals > 0 else 0
 
     def get_last_log_entry(self):
-        '''Returns users latest entry by 
-        id.'''
+        '''Get users latest entry by 
+        id.
+        
+        Returns the entry
+        '''
+
         last_id = self.log_entry_repository.get_users_last_entry_id(self.user)
 
         return self.get_log_entry_with_id(last_id)
 
     def __get_user_id(self):
         '''Get user id using the 
-        user repository.'''
+        user repository.
+        
+        Returns: user's id
+        '''
+        
         return self.user_repository.get_user_id(self.user.username)
 
     def login(self, username, password):
         '''Log user in using user repository.
-        Also raises error if wrong password etc.
-        Then add correct id to user object.'''
+        Raises error if wrong password etc.
+        Then add correct id to user object.
+        
+        Args:
+            username: which user
+            password: users password attempt
+        '''
 
         if not self.user_repository.compare_passwords(username, password):
             raise InvalidCredentialsError
@@ -146,7 +177,12 @@ class LogEntryService:
     def create_new_user(self, username, password):
         '''Create new user. 
         Do input validation and check if username taken.
-        Save user to database with user repository.'''
+        Save user to database with user repository.
+        
+        Args:
+            username: user to be created
+            password: password for that user
+        '''
 
         if username == '' or password == '' or ' ' in password or ' ' in username:
             raise InvalidInputError
@@ -163,7 +199,8 @@ class LogEntryService:
         for this year, month and week.
 
         Returns: tuple - (year, month, week)
-        of how many sessions'''
+        of how many sessions
+        '''
 
         dates = self.log_entry_repository.get_all_training_dates_by_user(
             self.user)
@@ -193,7 +230,8 @@ class LogEntryService:
         and calculates for each week instances of sessions.
         E.g. week 2 has 3 sessions, week 4 has 2 sessions.
 
-        Returns: list instances where index is week'''
+        Returns: list instances where index is week
+        '''
 
         current_year = datetime.today().year
 
@@ -212,8 +250,22 @@ class LogEntryService:
     def get_users_session_styles_ranked(self):
         '''Gets users session styles
         ranked by most common style to least
-        common.'''
+        common.
+        
+        Returns:
+            ranked list of session styles
+        '''
+        
         return self.log_entry_repository.get_users_session_styles_ranked(self.user)
+
+    def get_session_styles(self):
+        '''Get different session styles defined
+        in the log_entry_repository.
+        
+        Returns: list of styles
+        '''
+
+        return self.log_entry_repository.get_session_styles()
 
     def get_log_entry_with_id(self, log_id: int):
         '''Returns users specific log entry

@@ -60,6 +60,10 @@ class BrowseLogEntriesView:
         '''If already at latest or first log entry and user tries
         to go to even more recent entry (which doesn't exist) etc.,
         this function promts message to user about it.
+
+        Args:
+            message: what (error)message to show
+            columnpos: which column in tkinter window to show message
         '''
 
         if self.log_index_error_label:
@@ -90,7 +94,7 @@ class BrowseLogEntriesView:
         Grabs an entry by id and displays it.
         
         Is a bit long, but it performs one task and it's easier
-        to read it in it's current structure.
+        to read it in it's current structure rather than chopped up.
         '''
         
         entry = log_entry_service.get_log_entry_with_id(self.current_log_id)
@@ -118,6 +122,7 @@ class BrowseLogEntriesView:
         self.goal_for_next_session_label = ttk.Label(
             master=self.log_entry_frame, text=f'Goal for next session: {entry[8]}', wraplength=300)
 
+        # place previously created objects on the window
         self.log_entry_frame.grid(
             row=1, rowspan=3, column=1, columnspan=2, padx=10, pady=10)
 

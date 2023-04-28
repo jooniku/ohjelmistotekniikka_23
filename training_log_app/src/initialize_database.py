@@ -2,6 +2,14 @@ from database_connection import get_database_connection
 
 
 def drop_tables(db_connection):
+    '''Drops all tables for current database.
+    Shouldn't be called in normal use, but useful
+    for testing.
+
+    Args:
+        db_connection: connection to the database
+    '''
+
     cursor = db_connection.cursor()
 
     cursor.execute('''drop table if exists Users;''')
@@ -10,6 +18,12 @@ def drop_tables(db_connection):
 
 
 def create_tables(db_connection):
+    '''Create necessary tables in the database.
+
+    Args:
+        db_connection: connection to the database
+    '''
+
     cursor = db_connection.cursor()
 
     cursor.execute('''create table Users
@@ -33,6 +47,10 @@ def create_tables(db_connection):
 
 
 def initialize_database():
+    '''Gets a connection to a database configured in the
+    .env file and initializes it for use.
+    '''
+
     db_connection = get_database_connection()
 
     drop_tables(db_connection)

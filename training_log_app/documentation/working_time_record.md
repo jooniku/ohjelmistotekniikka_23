@@ -14,5 +14,6 @@
 | 20.04 | 4    | Made date selector, improved ui on new log entries, made two sequence diagrams |
 | 25.04 | 5    | Created graph and other stats, did input validation and error handling, improved ui |
 | 26.04 | 6    | Added log_id to database structure, many hours styling UI. Created browse log entries page. |
-| 27.04 | 4    | Wrote architecture documentation and user manual doc |
-| Total | 46 | 
+| 27.04 | 4    | Wrote architecture documentation and user manual doc. |
+| 28.04 | 2    | Wrote docstring and fixed bug with displaying ranked session styles. |
+| Total | 48 | 

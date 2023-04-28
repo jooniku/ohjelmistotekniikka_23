@@ -1,10 +1,11 @@
 from tkinter import Tk
 from ui.ui import UI
 
-# main loop for program
-
-
 def main():
+    '''Main window for application.
+    This function is called with poetry command.
+    '''
+
     window = Tk()
     window.title('MMA Log Book')
 

@@ -3,7 +3,8 @@ from services.log_entry_service import log_entry_service
 
 
 class MainUserPageView:
-    '''Class for main users page interface'''
+    '''Class for main users page interface.
+    '''
 
     def __init__(self, root,
                  login_view,
@@ -39,6 +40,9 @@ class MainUserPageView:
         self._browse_log_entries_view()
 
     def _define_last_entry_frame(self):
+        '''The main frame of users latest log entry. 
+        '''
+
         latest_entry = log_entry_service.get_last_log_entry()
 
         self.last_entry_label = ttk.Label(master=self._frame, justify='center',
@@ -75,6 +79,10 @@ class MainUserPageView:
                                                       style='inside_text.TLabel', justify='center')
 
     def _define_total_time_frame(self):
+        '''Creates frame for displaying total time user
+        has spent training.
+        '''
+
         self.total_time_label = ttk.Label(master=self._frame,
                                           text='Total training time',
                                           style='text.TLabel',
@@ -97,6 +105,10 @@ class MainUserPageView:
                                                       justify='center')
 
     def _define_nav_bar_frame(self):
+        '''Creates a "nav bar" where user
+        can navigate to different pages.
+        '''
+
         self.nav_bar_frame = ttk.Frame(
             master=self._frame, padding=(0, 0, 0, 10), style='navbar.TFrame')
 
@@ -125,7 +137,6 @@ class MainUserPageView:
                                                 style='button.TButton')
 
         self.nav_bar_frame.grid(row=0)
-
         self.username_label.grid(row=0, column=0, padx=5, pady=2)
         self.new_log_entry_button.grid(row=0, column=2, ipadx=5, ipady=2)
         self.browse_log_entries_view_button.grid(
@@ -134,6 +145,10 @@ class MainUserPageView:
         self.logout_button.grid(row=0, column=5, ipadx=5, ipady=2)
 
     def _build_total_time_frame(self):
+        '''Displays the previously created frame for
+        showing the total time user has spent training.
+        '''
+
         self.total_time_label.grid(row=1)
 
         self.total_time_label_frame.grid(
@@ -145,6 +160,10 @@ class MainUserPageView:
             row=2, column=0, padx=15, pady=5)
 
     def _build_last_entry_frame(self):
+        '''Displays the latest entry frame created earlier
+        on the window.
+        '''
+
         self.last_entry_label.grid(row=3)
 
         self.last_entry_label_frame.grid(
@@ -178,7 +197,9 @@ class MainUserPageView:
         
 
     def _initialize(self):
-        # initialize window
+        '''Initialize page.
+        '''
+
         self._frame = ttk.Frame(master=self._root, style='background.TFrame')
         self.heading_label = ttk.Label(master=self._frame, text='Main Page')
 

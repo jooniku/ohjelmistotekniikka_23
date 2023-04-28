@@ -32,5 +32,5 @@
 - Significantly improved UI with styling
 - Improved architecture documentation
 - Created user manual
-
+- Code has proper docstring
 

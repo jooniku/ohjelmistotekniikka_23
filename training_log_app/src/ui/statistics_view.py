@@ -46,6 +46,10 @@ class StatisticsPageView:
         self._main_user_page()
 
     def _define_statistics_frame(self):
+        '''Creates the main frame of the page.
+        Also creates necessary button to go back.
+        '''
+
         self.heading_label = ttk.Label(
             master=self._frame, text='Statistics', justify='center', style='text.TLabel', padding=(0,0,0,10))
 
@@ -90,6 +94,10 @@ class StatisticsPageView:
         canvas.get_tk_widget().pack()
 
     def _define_training_sessions_weekly_frame(self):
+        '''Creates the frame where the graph of weekly sessions
+        is put.
+        '''
+        
         self.training_sessions_weekly_frame = ttk.Labelframe(master=self._frame,
                                                              text='Graph of weekly training sessions this year',
                                                              labelanchor='n')
@@ -100,6 +108,9 @@ class StatisticsPageView:
             row=5, column=0, columnspan=2, padx=self.padx, pady=self.pady)
 
     def _define_total_sessions_frame(self):
+        '''Creates a frame where total amount of sessions is displayed.
+        '''
+
         self.total_sessions_frame = ttk.Frame(master=self._frame, style='inner_frame.TFrame')
 
         self.total_sessions_label = ttk.Label(master=self._frame,
@@ -119,6 +130,10 @@ class StatisticsPageView:
         self.total_sessions_label_num.grid(padx=10, pady=10)
 
     def _define_training_instances_frame(self):
+        '''Creates a frame where training sessions this week, month and year
+        are displayed.
+        '''
+
         self.training_instances_frame = ttk.Labelframe(master=self._frame,
                                                        text='Training sessions this',
                                                        labelanchor='n')
@@ -139,6 +154,10 @@ class StatisticsPageView:
         self.week_label.grid(row=3, padx=self.padx, pady=self.pady)
 
     def _define_rank_session_styles_frame(self):
+        '''Creates a frame where session styles are ranked by
+        how many times user has trained in them.
+        '''
+
         self.rank_session_styles_frame = ttk.Labelframe(master=self._frame,
                                                         text='Session styles ranked',
                                                         labelanchor='n')
@@ -159,6 +178,9 @@ class StatisticsPageView:
             place.grid(row=rank, column=0, padx=self.padx, pady=self.pady)
 
     def _define_goals_achieved_frame(self):
+        '''Creates frame which displays the precentage of goals user has achieved.
+        '''
+        
         self.precentage_of_goals_achieved_frame = ttk.Frame(master=self._frame, style='inner_frame.TFrame')
         self.precentage_of_goals_achieved_label = ttk.Label(master=self._frame,
                                                             text='Precentage of goals achieved',

@@ -6,8 +6,8 @@ from database_connection import get_database_connection
 class UserRepository:
     '''Class responsible for
     the connection between
-    database and LogEntryService
-    class. Handles User objects.
+    database and LogEntryService class.
+    Handles User objects.
 
     Main functions:
         user_availiable: checks if username is availiable
@@ -19,12 +19,12 @@ class UserRepository:
         self._db_connection = db_connection
 
     def user_availiable(self, username):
-        '''
-        Args: username
-
-        Check if username is availiable.
+        '''Check if username is availiable.
         Is not availiable if it is found
-        in the database'''
+        in the database
+        
+        Args: username
+        '''
 
         cursor = self._db_connection.cursor()
 
@@ -37,7 +37,11 @@ class UserRepository:
 
     def get_user_id(self, username):
         '''Get a specified users id
-        It is assumed the user exists'''
+        It is assumed the user exists
+        
+        Args: username
+        '''
+
         cursor = self._db_connection.cursor()
 
         user_id = cursor.execute('''select id
@@ -46,14 +50,12 @@ class UserRepository:
         return user_id
 
     def create_user(self, user: User):
-        '''
-        Args: user
-
-
-        Save user to database.
+        '''Save user to database.
         Hash password with salt.
 
         App prompts login page after this
+
+        Args: user
         '''
 
         cursor = self._db_connection.cursor()
@@ -70,7 +72,11 @@ class UserRepository:
 
     def compare_passwords(self, username, password_attempt):
         '''Grab corresponding username and password form database
-        and compare hashed passwords'''
+        and compare hashed passwords
+        
+        Args: username - user to try to log as
+              password_attempt - user input password 
+        '''
 
         cursor = self._db_connection.cursor()
 

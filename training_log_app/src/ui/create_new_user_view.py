@@ -94,7 +94,7 @@ class CreateNewUserView:
                                  command=self._handle_go_back,
                                  style='button.TButton')
 
-        # build the ui
+        # place the created objects on the window
         main_label.grid(row=0, columnspan=2, padx=5, pady=5)
 
         self._create_new_user_frame.grid(row=1, columnspan=2, rowspan=2, padx=25, pady=15)

@@ -165,7 +165,7 @@ class MainUserPageView:
         '''
 
         self.style = ttk.Style()
-
+    
         self.style.configure('background.TFrame', background='#2C3E50')
         self.style.configure('navbar.TFrame', background='#23313f', relief='flat')
         self.style.configure('navbar_text.TLabel', background='#23313f', foreground='#ECF0F1')
@@ -175,7 +175,7 @@ class MainUserPageView:
         self.style.configure('button.TButton', background='#23313f', foreground='#ECF0F1', relief='flat')
         self.style.map('button.TButton', relief=[('active', 'ridge')], background=[('active', '#31404f')])
         self.style.configure('input_field.TEntry', background='#ECF0F1')
-
+        
 
     def _initialize(self):
         # initialize window

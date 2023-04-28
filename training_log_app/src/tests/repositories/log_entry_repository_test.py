@@ -4,39 +4,30 @@ from database_connection import get_database_connection
 from repositories.log_entry_repository import LogEntryRepository
 from entities.log_entry import LogEntry
 from entities.user import User
-import datetime
 
 
 class TestLogEntryRepository(unittest.TestCase):
     def setUp(self):
-        self.entry_repo = LogEntryRepository(get_database_connection())
-
         initialize_database()
 
-        date = datetime.datetime.today()
-        duration = 90
-        session_style = 'wrestling'
-        what_went_well = 'got a sweet firemans carry'
-        what_did_not_go_well = 'got chocked'
-        goal_for_next_session = 'get 3 singles'
-        was_last_goal_achieved = True
-        user_id = 1
+        self.entry_repo = LogEntryRepository(get_database_connection())
 
-        self.first_entry = LogEntry(user_id=1)
-
-        self.second_entry = LogEntry(user_id=2)
+        self.first_entry = LogEntry()
+        self.first_entry.date = '12/03/2023'
+        self.first_entry.duration = 90
+        self.first_entry.session_style = 'wrestling'
+        self.first_entry.what_went_well = 'got a sweet firemans carry'
+        self.first_entry.what_did_not_go_well = 'got chocked'
+        self.first_entry.goal_for_next_session = 'get 3 singles'
+        self.first_entry.was_last_goal_achieved = 1
 
         self.user = User('userman', 'hellowalls')  # has user_id 1
+        self.user.add_id(1)
 
-    def testcreate_entry_returns_entry(self):
-        attempt = self.entry_repo.create_entry(self.first_entry)
+    def test_created_entry_is_saved_correctly(self):
+        self.entry_repo.create_entry(self.user, self.first_entry)
 
-        self.assertEqual(attempt, self.first_entry)
-
-    def test_created_entry_has_correct_id_num(self):
-        first = self.entry_repo.create_entry(self.first_entry)
-
-        second = self.entry_repo.create_entry(self.second_entry)
-
-        self.assertEqual(self.first_entry.log_id, 1)
-        self.assertEqual(self.second_entry.log_id, 2)
+        from_database = self.entry_repo.get_users_log_entry_by_id(
+            self.user, log_id=1)
+        print(from_database)
+        self.assertEqual(self.first_entry.date, from_database[1])

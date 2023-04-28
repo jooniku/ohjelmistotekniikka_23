@@ -48,14 +48,14 @@ class MainUserPageView:
         self.last_entry_label = ttk.Label(master=self._frame, justify='center',
                                           text='Last entry',
                                           style='text.TLabel',
-                                          padding=(0,25,0,0))
-        
+                                          padding=(0, 25, 0, 0))
+
         self.last_entry_label_frame = ttk.Frame(
             master=self._frame, style='inner_frame.TFrame')
 
         self.date_label = ttk.Label(
             master=self.last_entry_label_frame, text=f'Date:\n{latest_entry[3]}',
-                                                      style='inside_text.TLabel', justify='center')
+            style='inside_text.TLabel', justify='center')
 
         # this is done so it won't display 'no data minutes'
         time_var = ''
@@ -64,19 +64,19 @@ class MainUserPageView:
 
         self.duration_label = ttk.Label(
             master=self.last_entry_label_frame, text=f'Duration:\n{latest_entry[4]}{time_var}',
-                                                      style='inside_text.TLabel', justify='center')
+            style='inside_text.TLabel', justify='center')
         self.session_style_label = ttk.Label(
             master=self.last_entry_label_frame, text=f'Session style:\n{latest_entry[5]}',
-                                                      style='inside_text.TLabel', justify='center')
+            style='inside_text.TLabel', justify='center')
         self.what_went_well_label = ttk.Label(
             master=self.last_entry_label_frame, text=f'What went well:\n{latest_entry[6]}', wraplength=250,
-                                                      style='inside_text.TLabel', justify='center')
+            style='inside_text.TLabel', justify='center')
         self.what_did_not_go_well_label = ttk.Label(
             master=self.last_entry_label_frame, text=f'What did not go well:\n{latest_entry[7]}', wraplength=250,
-                                                      style='inside_text.TLabel', justify='center')
+            style='inside_text.TLabel', justify='center')
         self.goal_for_next_session_label = ttk.Label(
             master=self.last_entry_label_frame, text=f'Goal for next session:\n{latest_entry[8]}', wraplength=250,
-                                                      style='inside_text.TLabel', justify='center')
+            style='inside_text.TLabel', justify='center')
 
     def _define_total_time_frame(self):
         '''Creates frame for displaying total time user
@@ -87,7 +87,7 @@ class MainUserPageView:
                                           text='Total training time',
                                           style='text.TLabel',
                                           justify='center',
-                                          padding=(0,10,0,0))
+                                          padding=(0, 10, 0, 0))
 
         self.total_time_label_frame = ttk.Frame(
             master=self._frame, style='inner_frame.TFrame')
@@ -101,8 +101,8 @@ class MainUserPageView:
 
         self.total_time_spent_days_label = ttk.Label(master=self.total_time_label_frame,
                                                      text=f'{total_time_spent_in_minutes / (60*24):.01f} days',
-                                                      style='inside_text.TLabel',
-                                                      justify='center')
+                                                     style='inside_text.TLabel',
+                                                     justify='center')
 
     def _define_nav_bar_frame(self):
         '''Creates a "nav bar" where user
@@ -127,14 +127,14 @@ class MainUserPageView:
                                         style='button.TButton')
 
         self.statistics_view_button = ttk.Button(master=self.nav_bar_frame,
-                                                text='Statistics',
-                                                command=self._handle_statistics_view,
-                                                style='button.TButton')
+                                                 text='Statistics',
+                                                 command=self._handle_statistics_view,
+                                                 style='button.TButton')
 
         self.browse_log_entries_view_button = ttk.Button(master=self.nav_bar_frame,
-                                                text='Browse logs',
-                                                command=self._handle_browse_log_entries_view,
-                                                style='button.TButton')
+                                                         text='Browse logs',
+                                                         command=self._handle_browse_log_entries_view,
+                                                         style='button.TButton')
 
         self.nav_bar_frame.grid(row=0)
         self.username_label.grid(row=0, column=0, padx=5, pady=2)
@@ -168,7 +168,6 @@ class MainUserPageView:
 
         self.last_entry_label_frame.grid(
             row=4, column=0, padx=10, pady=10)
-        
 
         self.date_label.grid(row=3, column=0, padx=10, pady=5)
         self.duration_label.grid(row=4, column=0, padx=10, pady=5)
@@ -177,24 +176,29 @@ class MainUserPageView:
         self.what_did_not_go_well_label.grid(row=7, column=0, padx=10, pady=5)
         self.goal_for_next_session_label.grid(
             row=8, column=0, padx=10, pady=5)
-    
-    
+
     def _style_config(self):
         '''Style the page.
         '''
 
         self.style = ttk.Style()
-    
+
         self.style.configure('background.TFrame', background='#2C3E50')
-        self.style.configure('navbar.TFrame', background='#23313f', relief='flat')
-        self.style.configure('navbar_text.TLabel', background='#23313f', foreground='#ECF0F1')
-        self.style.configure('inner_frame.TFrame', background='#31404f', relief='sunken')
-        self.style.configure('text.TLabel', background='#2C3E50', foreground='#ECF0F1')
-        self.style.configure('inside_text.TLabel', background='#31404f', foreground='#ECF0F1')
-        self.style.configure('button.TButton', background='#23313f', foreground='#ECF0F1', relief='flat')
-        self.style.map('button.TButton', relief=[('active', 'ridge')], background=[('active', '#31404f')])
+        self.style.configure(
+            'navbar.TFrame', background='#23313f', relief='flat')
+        self.style.configure('navbar_text.TLabel',
+                             background='#23313f', foreground='#ECF0F1')
+        self.style.configure('inner_frame.TFrame',
+                             background='#31404f', relief='sunken')
+        self.style.configure(
+            'text.TLabel', background='#2C3E50', foreground='#ECF0F1')
+        self.style.configure('inside_text.TLabel',
+                             background='#31404f', foreground='#ECF0F1')
+        self.style.configure(
+            'button.TButton', background='#23313f', foreground='#ECF0F1', relief='flat')
+        self.style.map('button.TButton', relief=[
+                       ('active', 'ridge')], background=[('active', '#31404f')])
         self.style.configure('input_field.TEntry', background='#ECF0F1')
-        
 
     def _initialize(self):
         '''Initialize page.

@@ -284,6 +284,17 @@ files = [
 graph = ["objgraph (>=1.7.2)"]
 
 [[package]]
+name = "dotenv"
+version = "0.0.5"
+description = "Handle .env files"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "dotenv-0.0.5.tar.gz", hash = "sha256:b58d2ab3f83dbd4f8a362b21158a606bee87317a9444485566b3c8f0af847091"},
+]
+
+[[package]]
 name = "exceptiongroup"
 version = "1.1.1"
 description = "Backport of PEP 654 (exception groups)"
@@ -1052,4 +1063,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "a551783f586ae7a600337d2c6fa7d210a5396fdf150f5092b40fd051efb42f64"
+content-hash = "fe73781b586f239ca765987252d3bcfb3eee65eb021169d23bb08e692b805867"

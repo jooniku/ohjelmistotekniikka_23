@@ -70,7 +70,6 @@ class NewLogEntryView:
         self._date_frame.grid(row=1, column=0, padx=5, pady=5)
         self._date_entry.grid()
 
-
     def _define_duration_frame(self):
         '''Creates input field for user to write a duration.
         '''
@@ -84,7 +83,6 @@ class NewLogEntryView:
 
         self._duration_frame.grid(row=1, column=1, padx=5, pady=5)
         self._duration_entry.grid()
-
 
     def _define_session_style_frame(self):
         '''Creates an option menu object so user can choose from
@@ -104,10 +102,9 @@ class NewLogEntryView:
         self.opt_session = OptionMenu(self._session_style_frame,
                                       self._session_style_entry,
                                       *style_options)
-        
+
         self._session_style_frame.grid(row=2, column=0, padx=5, pady=5)
         self.opt_session.grid()
-
 
     def _define_what_went_well_frame(self):
         '''Creates an input field where user can write what went well.
@@ -123,7 +120,6 @@ class NewLogEntryView:
         self._what_went_well_frame.grid(row=3, column=0, padx=5, pady=5)
         self._what_went_well_entry.grid()
 
-
     def _define_what_did_not_go_well(self):
         '''Creates an input field where user can write what did not go well.
         '''
@@ -134,10 +130,9 @@ class NewLogEntryView:
                                                           padding=5)
         self._what_did_not_go_well_entry = ttk.Entry(
             master=self._what_did_not_go_well_frame)
-        
+
         self._what_did_not_go_well_frame.grid(row=3, column=1, padx=5, pady=5)
         self._what_did_not_go_well_entry.grid()
-
 
     def _define_goal_for_next_session_frame(self):
         '''Creates an input field where user can write a goal for next session.
@@ -149,10 +144,9 @@ class NewLogEntryView:
                                                            padding=5)
         self._goal_for_next_session_entry = ttk.Entry(
             master=self._goal_for_next_session_frame)
-        
+
         self._goal_for_next_session_frame.grid(row=5, column=0, padx=5, pady=5)
         self._goal_for_next_session_entry.grid()
-
 
     def _define_previously_set_goal_frame(self):
         '''Creates a frame where it displays displays a previously set goal
@@ -165,13 +159,12 @@ class NewLogEntryView:
                                                          padding=5)
 
         self._previously_set_goal_label = ttk.Label(master=self._previously_set_goal_frame,
-                                                    text=f'{log_entry_service.get_last_log_entry()[7]}',
+                                                    text=f'{log_entry_service.get_last_log_entry()[8]}',
                                                     wraplength=150,
                                                     justify='center')
-        
+
         self._previously_set_goal_frame.grid(row=4, column=0, padx=5, pady=5)
         self._previously_set_goal_label.grid()
-
 
     def _define_was_last_goal_achieved_frame(self):
         '''Creates a frame where user can choose wheter they achieved
@@ -195,16 +188,15 @@ class NewLogEntryView:
                 master=self._was_previous_goal_achieved_frame, text=value[0], value=value[1], variable=self._was_last_goal_achieved)
             rad_but.grid(row=4, column=i, padx=5, pady=5)
             i += 1
-        
+
         self._was_previous_goal_achieved_frame.grid(
             row=4, column=1, padx=5, pady=5)
-
 
     def _define_buttons(self):
         '''Creates buttons for user to go back
         or save the entry.
         '''
-        
+
         self._go_back_button = ttk.Button(
             master=self._frame,
             text='Back',
@@ -220,7 +212,6 @@ class NewLogEntryView:
         self._go_back_button.grid(row=6, column=0, padx=5)
         self._save_entry_button.grid(row=6, column=1, padx=5)
 
-
     def _define_frames(self):
         self._define_date_frame()
         self._define_duration_frame()
@@ -231,7 +222,6 @@ class NewLogEntryView:
         self._define_previously_set_goal_frame()
         self._define_was_last_goal_achieved_frame()
         self._define_buttons()
-
 
     def _initialize(self):
         self._frame = ttk.LabelFrame(master=self._root, text='Create a log entry',

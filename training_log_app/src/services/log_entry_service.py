@@ -112,7 +112,7 @@ class LogEntryService:
         '''Accesses log_entry_repository to
         get total amount of training sessions
         by user.
-        
+
         Returns: value given by log_entry_repository
         '''
 
@@ -122,7 +122,7 @@ class LogEntryService:
         '''Calculates the precentage of set goals that the user
         has achieved (marked so in the log entry page)
         via log_entry_repository.
-        
+
         Returns: Achieved goals as a precentage integer
         '''
 
@@ -140,7 +140,7 @@ class LogEntryService:
     def get_last_log_entry(self):
         '''Get users latest entry by 
         id.
-        
+
         Returns the entry
         '''
 
@@ -151,17 +151,17 @@ class LogEntryService:
     def __get_user_id(self):
         '''Get user id using the 
         user repository.
-        
+
         Returns: user's id
         '''
-        
+
         return self.user_repository.get_user_id(self.user.username)
 
     def login(self, username, password):
         '''Log user in using user repository.
         Raises error if wrong password etc.
         Then add correct id to user object.
-        
+
         Args:
             username: which user
             password: users password attempt
@@ -178,7 +178,7 @@ class LogEntryService:
         '''Create new user. 
         Do input validation and check if username taken.
         Save user to database with user repository.
-        
+
         Args:
             username: user to be created
             password: password for that user
@@ -251,17 +251,17 @@ class LogEntryService:
         '''Gets users session styles
         ranked by most common style to least
         common.
-        
+
         Returns:
             ranked list of session styles
         '''
-        
+
         return self.log_entry_repository.get_users_session_styles_ranked(self.user)
 
     def get_session_styles(self):
         '''Get different session styles defined
         in the log_entry_repository.
-        
+
         Returns: list of styles
         '''
 

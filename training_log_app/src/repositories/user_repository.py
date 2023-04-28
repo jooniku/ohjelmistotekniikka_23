@@ -22,7 +22,7 @@ class UserRepository:
         '''Check if username is availiable.
         Is not availiable if it is found
         in the database
-        
+
         Args: username
         '''
 
@@ -38,7 +38,7 @@ class UserRepository:
     def get_user_id(self, username):
         '''Get a specified users id
         It is assumed the user exists
-        
+
         Args: username
         '''
 
@@ -73,7 +73,7 @@ class UserRepository:
     def compare_passwords(self, username, password_attempt):
         '''Grab corresponding username and password form database
         and compare hashed passwords
-        
+
         Args: username - user to try to log as
               password_attempt - user input password 
         '''

@@ -7,7 +7,7 @@ class LogEntryRepository:
     '''Class to handle the connection between
     LogEntryService and the database. Handles
     the LogEntry objects.
-    
+
     Main functions:
         create_entry: saves new log entry to database
         get_users_log_entry_by_id: get users entry with entry's id
@@ -24,13 +24,12 @@ class LogEntryRepository:
 
         # different session styles are defined here and the database init file
         self.session_styles = ['wrestling', 'grappling',
-                         'striking', 'sparring', 'other']
+                               'striking', 'sparring', 'other']
 
     def get_session_styles(self):
         '''Return different session styles defined here.
         '''
         return self.session_styles
-    
 
     def get_users_log_entry_by_id(self, user: User, log_id: int):
         '''Get a specific users specific log entry
@@ -169,13 +168,14 @@ class LogEntryRepository:
         so even if no entrys for session it's displayed.
 
         Args: user - which user
-        
+
         Returns:
             sorted list where (amount of sessions, style name)
         '''
-        
+
         style_count = {}
-        for style in self.session_styles: style_count[style] = 0
+        for style in self.session_styles:
+            style_count[style] = 0
 
         cursor = self.database.cursor()
         data = cursor.execute('''select session_style, count(session_style)
@@ -189,7 +189,10 @@ class LogEntryRepository:
                 continue
             style_count[session_style] += count
 
-        return sorted([(style_count[style], style) for style in style_count.keys()], reverse=True)
+        ranks = [(count, style_name)
+                 for style_name, count in style_count.items()]
+
+        return sorted(ranks, reverse=True)
 
     def get_all_training_dates_by_user(self, user: User):
         '''Get all training session dates
@@ -197,7 +200,7 @@ class LogEntryRepository:
 
         Args: user - which users data
         '''
-        
+
         cursor = self.database.cursor()
 
         dates = cursor.execute('''select date from Log_entries

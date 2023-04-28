@@ -15,15 +15,12 @@ class LoginView:
 
         self._initialize()
 
-    
     def pack(self):
         self._frame.pack(fill=constants.X)
 
-    
     def destroy(self):
         self._frame.destroy()
-    
-    
+
     def _style_config(self):
         '''Style the login page.
         '''
@@ -31,14 +28,18 @@ class LoginView:
         self.style = ttk.Style()
 
         self.style.configure('background.TFrame', background='#2C3E50')
-        self.style.configure('loginframe.TFrame', background='#31404f', relief='sunken')
-        self.style.configure('text.TLabel', background='#2C3E50', foreground='#ECF0F1')
-        self.style.configure('login_text.TLabel', background='#31404f', foreground='#ECF0F1')
-        self.style.configure('button.TButton', background='#2C3E50', foreground='#ECF0F1', relief='groove')
-        self.style.map('button.TButton', relief=[('active', 'ridge')], background=[('active', '#31404f')])
+        self.style.configure('loginframe.TFrame',
+                             background='#31404f', relief='sunken')
+        self.style.configure(
+            'text.TLabel', background='#2C3E50', foreground='#ECF0F1')
+        self.style.configure('login_text.TLabel',
+                             background='#31404f', foreground='#ECF0F1')
+        self.style.configure(
+            'button.TButton', background='#2C3E50', foreground='#ECF0F1', relief='groove')
+        self.style.map('button.TButton', relief=[
+                       ('active', 'ridge')], background=[('active', '#31404f')])
         self.style.configure('input_field.TEntry', background='#ECF0F1')
-    
-    
+
     def _handle_login(self):
         '''Handles logging user in. Is called with log in button.
         If wrong username etc. prompts user with message.
@@ -58,13 +59,11 @@ class LoginView:
                                     style='text.TLabel')
             error_label.grid(row=3, column=0, columnspan=2)
 
-
     def _handle_create_new_user_view(self):
         '''Shows the page for creating new user.
         '''
 
         self._show_create_new_user()
-
 
     def _define_login_frame(self):
         '''Creates the login page. 
@@ -73,19 +72,21 @@ class LoginView:
         self.login_frame_label = ttk.Frame(
             master=self._frame,
             style='loginframe.TFrame')
-        
+
         self.login_label = ttk.Label(master=self._frame,
-                                    text='Log in or create a new user',
-                                    style='text.TLabel',
-                                    justify='center')
+                                     text='Log in or create a new user',
+                                     style='text.TLabel',
+                                     justify='center')
 
         self.username_label = ttk.Label(
             master=self.login_frame_label, text='Username:', style='login_text.TLabel')
-        self._username_entry = ttk.Entry(master=self.login_frame_label, style='input_field.TEntry')
+        self._username_entry = ttk.Entry(
+            master=self.login_frame_label, style='input_field.TEntry')
 
         self.password_label = ttk.Label(
             master=self.login_frame_label, text='Password:', style='login_text.TLabel')
-        self._password_entry = ttk.Entry(master=self.login_frame_label, style='input_field.TEntry')
+        self._password_entry = ttk.Entry(
+            master=self.login_frame_label, style='input_field.TEntry')
 
         self.login_label.grid(row=0, columnspan=2, padx=5, pady=5)
 

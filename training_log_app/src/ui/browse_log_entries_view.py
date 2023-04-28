@@ -45,7 +45,7 @@ class BrowseLogEntriesView:
         '''When "next" button is pressed this function is called.
         Calls self._define_log_entry_frame() for next log.
         '''
-        
+
         if self.log_index_error_label:
             self.log_index_error_label.grid_remove()
 
@@ -92,11 +92,11 @@ class BrowseLogEntriesView:
     def _define_log_entry_frame(self):
         '''The main frame of log entry being displayed. 
         Grabs an entry by id and displays it.
-        
+
         Is a bit long, but it performs one task and it's easier
         to read it in it's current structure rather than chopped up.
         '''
-        
+
         entry = log_entry_service.get_log_entry_with_id(self.current_log_id)
 
         self.log_entry_frame = ttk.LabelFrame(master=self._frame)
@@ -133,7 +133,8 @@ class BrowseLogEntriesView:
         self.session_style_label.grid(row=5, column=0, ipadx=5, ipady=5)
         self.what_went_well_label.grid(row=6, column=0, ipadx=5, ipady=5)
         self.what_did_not_go_well_label.grid(row=7, column=0, ipadx=5, ipady=5)
-        self.goal_for_next_session_label.grid(row=8, column=0, ipadx=5, ipady=5)
+        self.goal_for_next_session_label.grid(
+            row=8, column=0, ipadx=5, ipady=5)
 
     def _define_buttons(self):
         '''Display buttons for controlling page.

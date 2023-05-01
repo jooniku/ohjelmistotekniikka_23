@@ -16,4 +16,5 @@
 | 26.04 | 6    | Added log_id to database structure, many hours styling UI. Created browse log entries page. |
 | 27.04 | 4    | Wrote architecture documentation and user manual doc. |
 | 28.04 | 2    | Wrote docstring and fixed bug with displaying ranked session styles. |
-| Total | 48 | 
+| 01.05 | 2    | Wrote tests. |
+| Total | 50 | 

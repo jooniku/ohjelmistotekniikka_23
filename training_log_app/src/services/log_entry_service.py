@@ -281,7 +281,7 @@ class LogEntryService:
         entry = self.log_entry_repository.get_users_log_entry_by_id(
             user=self.user, log_id=log_id)
 
-        return ['no data' for _ in range(9)] if log_id is None or entry is None else entry[0]
+        return ['no data' for _ in range(9)] if log_id is None or entry is None else entry
 
 
 log_entry_service = LogEntryService()

@@ -50,7 +50,7 @@ class LogEntryRepository:
 
         self.database.commit()
 
-        return entry
+        return None if entry == [] else entry[0]
 
     def get_all_entries_with_user(self, user: User):
         '''Return users entries.
@@ -75,7 +75,7 @@ class LogEntryRepository:
 
         Args: user - which user
 
-        Return: sum of durations
+        Return: sum of durations in minutes
         '''
 
         cursor = self.database.cursor()
@@ -142,7 +142,7 @@ class LogEntryRepository:
         last_log_id = self.get_users_last_entry_id(user=user)
         if last_log_id is None:
             last_log_id = 0
-        last_log_id += 1
+        log_id = last_log_id + 1
 
         cursor.execute('''insert into Log_entries (
                     log_id,
@@ -155,7 +155,7 @@ class LogEntryRepository:
                     goal_for_next_session,
                     was_last_goal_achieved) 
                     values (?,?,?,?,?,?,?,?,?)''',
-                       [last_log_id, log_entry.user_id, log_entry.date, log_entry.duration,
+                       [log_id, log_entry.user_id, log_entry.date, log_entry.duration,
                         log_entry.session_style, log_entry.what_went_well,
                         log_entry.what_did_not_go_well, log_entry.goal_for_next_session,
                         log_entry.was_last_goal_achieved])

@@ -7,10 +7,10 @@ from repositories.user_repository import UserRepository
 
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
+        initialize_database()
         self.user_george = User(username='george', password='ilovedinosaurs')
         self.user_sam = User(username='sam', password='ilovepotatoes')
         self.repo = UserRepository(get_database_connection())
-        initialize_database()
 
     def test_user_creation_returns_user(self):
         usr = self.repo.create_user(self.user_george)

@@ -6,7 +6,6 @@ from ui.main_user_page_view import MainUserPageView
 from ui.statistics_view import StatisticsPageView
 from ui.browse_log_entries_view import BrowseLogEntriesView
 
-
 class UI:
     '''Class responsible for user interface'''
 
@@ -18,13 +17,11 @@ class UI:
 
         self._root = root
         self._current_view = None
-
-        self.configure_styles()
-
-    def configure_styles(self):
-        # configure global ui styling
-        ttk.Style().configure('.', font=('Khmer OS', 11))
-
+        self.configure_window()
+        
+    def configure_window(self):
+        self._root.resizable(width=False, height=False)
+        
     def _hide_current_view(self):
         if self._current_view:
             self._current_view.destroy()

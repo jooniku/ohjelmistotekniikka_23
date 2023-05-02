@@ -1,5 +1,6 @@
 from tkinter import ttk, constants
 from services.log_entry_service import log_entry_service
+from ui.app_style import AppStyle
 
 
 class BrowseLogEntriesView:
@@ -71,7 +72,8 @@ class BrowseLogEntriesView:
         self.log_index_error_label = ttk.Label(master=self._frame,
                                                text=message,
                                                foreground='red',
-                                               wraplength=60)
+                                               wraplength=60,
+                                               style='text.TLabel')
         self.log_index_error_label.grid(row=0, rowspan=2, column=columnpos)
 
     def _handle_previous_log(self):
@@ -99,12 +101,15 @@ class BrowseLogEntriesView:
 
         entry = log_entry_service.get_log_entry_with_id(self.current_log_id)
 
-        self.log_entry_frame = ttk.LabelFrame(master=self._frame)
+        self.log_entry_frame = ttk.Frame(master=self._frame,
+                                              style='inner_frame.TFrame')
+
         self.main_label = ttk.Label(master=self._frame, text='Browse Log Entries',
-                                    justify='center')
+                                    justify='center', style='text.TLabel')
 
         self.date_label = ttk.Label(
-            master=self.log_entry_frame, text=f'Date: {entry[3]}')
+            master=self.log_entry_frame, text=f'Date:\n{entry[3]}',
+            style='inside_text.TLabel', justify='center')
 
         # this is done so it won't display 'no data minutes'
         time_var = ''
@@ -112,29 +117,39 @@ class BrowseLogEntriesView:
             time_var += f' minutes'
 
         self.duration_label = ttk.Label(
-            master=self.log_entry_frame, text=f'Duration: {entry[4]}{time_var}')
+            master=self.log_entry_frame, text=f'Duration:\n{entry[4]}{time_var}',
+            style='inside_text.TLabel', justify='center')
         self.session_style_label = ttk.Label(
-            master=self.log_entry_frame, text=f'Session style: {entry[5]}')
+            master=self.log_entry_frame, text=f'Session style:\n{entry[5]}',
+            style='inside_text.TLabel', justify='center')
         self.what_went_well_label = ttk.Label(
-            master=self.log_entry_frame, text=f'What went well: {entry[6]}', wraplength=300)
+            master=self.log_entry_frame, text=f'What went well:\n{entry[6]}', wraplength=250,
+            style='inside_text.TLabel', justify='center')
         self.what_did_not_go_well_label = ttk.Label(
-            master=self.log_entry_frame, text=f'What did not go well: {entry[7]}', wraplength=300)
+            master=self.log_entry_frame, text=f'What did not go well:\n{entry[7]}', wraplength=250,
+            style='inside_text.TLabel', justify='center')
         self.goal_for_next_session_label = ttk.Label(
-            master=self.log_entry_frame, text=f'Goal for next session: {entry[8]}', wraplength=300)
+            master=self.log_entry_frame, text=f'Goal for next session:\n{entry[8]}', wraplength=250,
+            style='inside_text.TLabel', justify='center')
 
-        # place previously created objects on the window
+        self._build_log_entry_frame()
+
+    def _build_log_entry_frame(self):
+        '''place previously created objects on the window
+        '''
+
         self.log_entry_frame.grid(
             row=1, rowspan=3, column=1, columnspan=2, padx=10, pady=10)
 
         self.main_label.grid(row=0, columnspan=5, pady=10)
 
-        self.date_label.grid(row=3, column=0, ipadx=5, ipady=5)
-        self.duration_label.grid(row=4, column=0, ipadx=5, ipady=5)
-        self.session_style_label.grid(row=5, column=0, ipadx=5, ipady=5)
-        self.what_went_well_label.grid(row=6, column=0, ipadx=5, ipady=5)
-        self.what_did_not_go_well_label.grid(row=7, column=0, ipadx=5, ipady=5)
+        self.date_label.grid(row=3, column=0, padx=10, pady=5)
+        self.duration_label.grid(row=4, column=0, padx=10, pady=5)
+        self.session_style_label.grid(row=5, column=0, padx=10, pady=5)
+        self.what_went_well_label.grid(row=6, column=0, padx=10, pady=5)
+        self.what_did_not_go_well_label.grid(row=7, column=0, padx=10, pady=5)
         self.goal_for_next_session_label.grid(
-            row=8, column=0, ipadx=5, ipady=5)
+            row=8, column=0, padx=10, pady=5)
 
     def _define_buttons(self):
         '''Display buttons for controlling page.
@@ -142,15 +157,18 @@ class BrowseLogEntriesView:
 
         previous_log_button = ttk.Button(master=self._frame,
                                          text='Previous',
-                                         command=self._handle_previous_log)
+                                         command=self._handle_previous_log,
+                                         style='button.TButton')
 
         next_log_button = ttk.Button(master=self._frame,
                                      text='Next',
-                                     command=self._handle_next_log)
+                                     command=self._handle_next_log,
+                                     style='button.TButton')
 
         back_button = ttk.Button(master=self._frame,
                                  text='Back',
-                                 command=self._handle_go_back)
+                                 command=self._handle_go_back,
+                                 style='button.TButton')
 
         previous_log_button.grid(row=2, column=0, padx=5, pady=5)
         next_log_button.grid(row=2, column=4, padx=5, pady=5)
@@ -160,11 +178,11 @@ class BrowseLogEntriesView:
         '''Initializes this page, is called
         from the __init__ function.'''
 
-        self._frame = ttk.Frame(master=self._root)
+        self._frame = ttk.Frame(master=self._root, style='background.TFrame')
 
         self._style_config()
         self._define_log_entry_frame()
         self._define_buttons()
-
+        
         self.padx = 10
         self.pady = 10

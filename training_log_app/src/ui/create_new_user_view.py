@@ -1,6 +1,6 @@
 from tkinter import ttk, constants
 from services.log_entry_service import log_entry_service, UsernameAlreadyInUseError, InvalidInputError
-
+from ui.app_style import AppStyle
 
 class CreateNewUserView:
     '''Class for the ui of creating a new user.
@@ -12,6 +12,7 @@ class CreateNewUserView:
         Args:
             root: main window of app
             login_view: is returned to login page after user creation
+            theme: what theme to use
         '''
 
         self._root = root
@@ -67,7 +68,7 @@ class CreateNewUserView:
         '''
 
         self._create_new_user_frame = ttk.Frame(master=self._frame,
-                                                style='inner_frame.TFrame')
+                                                style='login_frame.TFrame')
 
         main_label = ttk.Label(master=self._frame,
                                text='Create a new user',
@@ -75,24 +76,24 @@ class CreateNewUserView:
                                justify='center')
 
         username_label = ttk.Label(
-            master=self._create_new_user_frame, text='Username:', style='inside_text.TLabel')
+            master=self._create_new_user_frame, text='Username:', style='login_text.TLabel')
         self._username_entry = ttk.Entry(
             master=self._create_new_user_frame, style='input_field.TEntry')
 
         password_label = ttk.Label(
-            master=self._create_new_user_frame, text='Password:', style='inside_text.TLabel')
+            master=self._create_new_user_frame, text='Password:', style='login_text.TLabel')
         self._password_entry = ttk.Entry(
             master=self._create_new_user_frame, style='input_field.TEntry')
 
         create_button = ttk.Button(master=self._frame,
                                    text='Create user',
                                    command=self._handle_create_new_user,
-                                   style='button.TButton')
+                                   style='login_button.TButton')
 
         back_button = ttk.Button(master=self._frame,
                                  text='Back',
                                  command=self._handle_go_back,
-                                 style='button.TButton')
+                                 style='login_button.TButton')
 
         # place the created objects on the window
         main_label.grid(row=0, columnspan=2, padx=5, pady=5)
@@ -110,28 +111,7 @@ class CreateNewUserView:
 
         back_button.grid(row=4, column=0, padx=10, pady=10)
 
-    def _style_config(self):
-        '''Style the page.
-        '''
-
-        self.style = ttk.Style()
-
-        self.style.configure('background.TFrame', background='#2C3E50')
-        self.style.configure('inner_frame.TFrame',
-                             background='#31404f', relief='sunken')
-        self.style.configure(
-            'text.TLabel', background='#2C3E50', foreground='#ECF0F1')
-        self.style.configure('inside_text.TLabel',
-                             background='#31404f', foreground='#ECF0F1')
-        self.style.configure(
-            'button.TButton', background='#2C3E50', foreground='#ECF0F1', relief='groove')
-        self.style.map('button.TButton', relief=[
-                       ('active', 'ridge')], background=[('active', '#31404f')])
-        self.style.configure('input_field.TEntry', background='#ECF0F1')
-
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root, style='background.TFrame')
-
-        self._style_config()
 
         self._define_create_new_user_frame()

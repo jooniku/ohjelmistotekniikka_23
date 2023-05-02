@@ -34,3 +34,6 @@
 - Created user manual
 - Code has proper docstring
 
+## Week 7
+- Created new classes AppStyle, NightMode and Daymode for controlling UI style
+

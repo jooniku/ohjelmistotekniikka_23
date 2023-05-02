@@ -1,5 +1,6 @@
 from tkinter import ttk, constants
 from services.log_entry_service import log_entry_service
+from ui.app_style import AppStyle
 
 
 class MainUserPageView:
@@ -11,12 +12,14 @@ class MainUserPageView:
                  new_entry_view,
                  statistics_view,
                  browse_log_entries_view):
+
         self._root = root
         self._frame = None
         self._login_view = login_view
         self._new_entry_view = new_entry_view
         self._statistics_view = statistics_view
         self._browse_log_entries_view = browse_log_entries_view
+
 
         self._initialize()
 
@@ -38,6 +41,10 @@ class MainUserPageView:
 
     def _handle_browse_log_entries_view(self):
         self._browse_log_entries_view()
+
+    def _handle_change_theme(self):
+        self.theme = 'night'
+        self.style
 
     def _define_last_entry_frame(self):
         '''The main frame of users latest log entry. 
@@ -104,13 +111,13 @@ class MainUserPageView:
                                                      style='inside_text.TLabel',
                                                      justify='center')
 
+
     def _define_nav_bar_frame(self):
         '''Creates a "nav bar" where user
         can navigate to different pages.
         '''
-
         self.nav_bar_frame = ttk.Frame(
-            master=self._frame, padding=(0, 0, 0, 10), style='navbar.TFrame')
+            master=self._frame, padding=(0, 0, 0, 4), style='navbar.TFrame')
 
         self.username_label = ttk.Label(
             master=self.nav_bar_frame, text=f'Logged in as {log_entry_service.user.username}',
@@ -136,13 +143,19 @@ class MainUserPageView:
                                                          command=self._handle_browse_log_entries_view,
                                                          style='button.TButton')
 
+        self.change_theme_button = ttk.Button(master=self.nav_bar_frame,
+                                              text='Change theme',
+                                              style='button.TButton',
+                                              command=self._handle_change_theme)
+
         self.nav_bar_frame.grid(row=0)
         self.username_label.grid(row=0, column=0, padx=5, pady=2)
         self.new_log_entry_button.grid(row=0, column=2, ipadx=5, ipady=2)
         self.browse_log_entries_view_button.grid(
             row=0, column=3, ipadx=5, ipady=2)
         self.statistics_view_button.grid(row=0, column=4, ipadx=5, ipady=2)
-        self.logout_button.grid(row=0, column=5, ipadx=5, ipady=2)
+        self.change_theme_button.grid(row=0, column=5, ipadx=5, ipady=2)
+        self.logout_button.grid(row=0, column=6, ipadx=5, ipady=2)
 
     def _build_total_time_frame(self):
         '''Displays the previously created frame for
@@ -177,28 +190,6 @@ class MainUserPageView:
         self.goal_for_next_session_label.grid(
             row=8, column=0, padx=10, pady=5)
 
-    def _style_config(self):
-        '''Style the page.
-        '''
-
-        self.style = ttk.Style()
-
-        self.style.configure('background.TFrame', background='#2C3E50')
-        self.style.configure(
-            'navbar.TFrame', background='#23313f', relief='flat')
-        self.style.configure('navbar_text.TLabel',
-                             background='#23313f', foreground='#ECF0F1')
-        self.style.configure('inner_frame.TFrame',
-                             background='#31404f', relief='sunken')
-        self.style.configure(
-            'text.TLabel', background='#2C3E50', foreground='#ECF0F1')
-        self.style.configure('inside_text.TLabel',
-                             background='#31404f', foreground='#ECF0F1')
-        self.style.configure(
-            'button.TButton', background='#23313f', foreground='#ECF0F1', relief='flat')
-        self.style.map('button.TButton', relief=[
-                       ('active', 'ridge')], background=[('active', '#31404f')])
-        self.style.configure('input_field.TEntry', background='#ECF0F1')
 
     def _initialize(self):
         '''Initialize page.
@@ -206,8 +197,6 @@ class MainUserPageView:
 
         self._frame = ttk.Frame(master=self._root, style='background.TFrame')
         self.heading_label = ttk.Label(master=self._frame, text='Main Page')
-
-        self._style_config()
 
         self.padx = 10
         self.pady = 10

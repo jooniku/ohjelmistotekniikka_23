@@ -1,6 +1,6 @@
 from tkinter import ttk, constants
 from services.log_entry_service import log_entry_service, InvalidCredentialsError
-
+from ui.app_style import AppStyle
 
 class LoginView:
     '''Class responsible for login page UI
@@ -11,7 +11,10 @@ class LoginView:
         self._show_main_page = show_main_page
         self._show_create_new_user = show_create_new_user
 
+
         self._frame = None
+
+        self.style = AppStyle()
 
         self._initialize()
 
@@ -20,25 +23,6 @@ class LoginView:
 
     def destroy(self):
         self._frame.destroy()
-
-    def _style_config(self):
-        '''Style the login page.
-        '''
-
-        self.style = ttk.Style()
-
-        self.style.configure('background.TFrame', background='#2C3E50')
-        self.style.configure('loginframe.TFrame',
-                             background='#31404f', relief='sunken')
-        self.style.configure(
-            'text.TLabel', background='#2C3E50', foreground='#ECF0F1')
-        self.style.configure('login_text.TLabel',
-                             background='#31404f', foreground='#ECF0F1')
-        self.style.configure(
-            'button.TButton', background='#2C3E50', foreground='#ECF0F1', relief='groove')
-        self.style.map('button.TButton', relief=[
-                       ('active', 'ridge')], background=[('active', '#31404f')])
-        self.style.configure('input_field.TEntry', background='#ECF0F1')
 
     def _handle_login(self):
         '''Handles logging user in. Is called with log in button.
@@ -71,7 +55,7 @@ class LoginView:
 
         self.login_frame_label = ttk.Frame(
             master=self._frame,
-            style='loginframe.TFrame')
+            style='login_frame.TFrame')
 
         self.login_label = ttk.Label(master=self._frame,
                                      text='Log in or create a new user',
@@ -106,12 +90,12 @@ class LoginView:
         self.login_button = ttk.Button(master=self._frame,
                                        text='Login',
                                        command=self._handle_login,
-                                       style='button.TButton')
+                                       style='login_button.TButton')
 
         self.create_new_user_button = ttk.Button(master=self._frame,
                                                  text='Create new user',
                                                  command=self._handle_create_new_user_view,
-                                                 style='button.TButton')
+                                                 style='login_button.TButton')
 
         self.create_new_user_button.grid(
             row=4, column=0, columnspan=1, padx=5, pady=5)
@@ -121,13 +105,9 @@ class LoginView:
         '''This is called from __init__ function.
         Calls functions to create page.
         '''
+        self.style = AppStyle('day')
 
         self._frame = ttk.Frame(master=self._root, style='background.TFrame')
-
-        self.padx = 10
-        self.pady = 10
-
-        self._style_config()
 
         self._define_login_frame()
         self._define_buttons()

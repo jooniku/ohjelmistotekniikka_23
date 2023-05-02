@@ -2,6 +2,7 @@ from tkinter import ttk, constants, OptionMenu, StringVar
 from tkcalendar import DateEntry
 from datetime import datetime
 from services.log_entry_service import log_entry_service, InvalidInputError
+from ui.app_style import AppStyle
 
 
 class NewLogEntryView:
@@ -48,8 +49,9 @@ class NewLogEntryView:
         except InvalidInputError:
             self.error_label = ttk.Label(master=self._frame,
                                          text='Invalid or empty field!',
-                                         foreground='red')
-            self.error_label.grid(row=0, column=1)
+                                         foreground='red',
+                                         style='text.TLabel')
+            self.error_label.grid(row=3, column=1)
 
     def _handle_go_back(self):
         self._main_user_view()
@@ -57,95 +59,130 @@ class NewLogEntryView:
     def _define_date_frame(self):
         '''Creates input field for user to select a date.
         '''
-
-        self._date_frame = ttk.Labelframe(master=self._frame,
-                                          text='Date',
-                                          labelanchor='nw',
-                                          padding=5)
+        self._date_label = ttk.Label(master=self._frame,
+                                         text='Date',
+                                         style='text.TLabel',
+                                         justify='center',
+                                         padding=(0,10,0,0))
+        
+        self._date_frame = ttk.Frame(master=self._frame,
+                                     style='inner_frame.TFrame',
+                                     padding=5)
 
         date = datetime.today()
         self._date_entry = DateEntry(master=self._date_frame, date_pattern='dd/mm/yyyy', day=date.day, month=date.month, year=date.year,
-                                     background='darkblue', foreground='white', _downarrow_name='')
+                                     background=self.style.get_calendar_colour(), foreground='white', _downarrow_name='')
 
-        self._date_frame.grid(row=1, column=0, padx=5, pady=5)
+        self._date_label.grid(row=1, column=0, pady=2)
+        self._date_frame.grid(row=2, column=0, padx=5, pady=5)
         self._date_entry.grid()
 
     def _define_duration_frame(self):
         '''Creates input field for user to write a duration.
         '''
-
-        self._duration_frame = ttk.Labelframe(master=self._frame,
-                                              text='Duration (min)',
-                                              labelanchor='nw',
-                                              padding=5)
+        self._duration_label = ttk.Label(master=self._frame,
+                                         text='Duration (min)',
+                                         style='text.TLabel',
+                                         justify='center',
+                                         padding=(0,10,0,0))
+        
+        self._duration_frame = ttk.Frame(master=self._frame,
+                                              padding=5,
+                                              style='inner_frame.TFrame')
 
         self._duration_entry = ttk.Entry(master=self._duration_frame)
 
-        self._duration_frame.grid(row=1, column=1, padx=5, pady=5)
+        self._duration_label.grid(row=1, column=1, pady=2)
+        self._duration_frame.grid(row=2, column=1, padx=5, pady=5)
         self._duration_entry.grid()
 
     def _define_session_style_frame(self):
         '''Creates an option menu object so user can choose from
         few style options.
         '''
-
-        self._session_style_frame = ttk.Labelframe(master=self._frame,
-                                                   text='Session style',
-                                                   labelanchor='nw',
+        self._session_style_label = ttk.Label(master=self._frame,
+                                         text='Session style',
+                                         style='text.TLabel',
+                                         justify='center',
+                                         padding=(0,10,0,0))
+        
+        self._session_style_frame = ttk.Frame(master=self._frame,
+                                                   style='inner_frame.TFrame',
                                                    padding=5)
 
         style_options = log_entry_service.get_session_styles()
 
         self._session_style_entry = StringVar(self._frame)
-        self._session_style_entry.set('select')  # our default value
 
-        self.opt_session = OptionMenu(self._session_style_frame,
+        self.opt_session = ttk.OptionMenu(self._session_style_frame,
                                       self._session_style_entry,
-                                      *style_options)
+                                      'select',
+                                      *style_options,
+                                      style='menu.TMenubutton')
 
-        self._session_style_frame.grid(row=2, column=0, padx=5, pady=5)
+        self._session_style_label.grid(row=3, column=0)
+        self._session_style_frame.grid(row=4, column=0)
         self.opt_session.grid()
 
     def _define_what_went_well_frame(self):
         '''Creates an input field where user can write what went well.
         '''
 
-        self._what_went_well_frame = ttk.Labelframe(master=self._frame,
-                                                    text='What went well',
-                                                    labelanchor='nw',
+        self._what_went_well_label = ttk.Label(master=self._frame,
+                                         text='What went well',
+                                         style='text.TLabel',
+                                         justify='center',
+                                         padding=(0,10,0,0))
+        
+        self._what_went_well_frame = ttk.Frame(master=self._frame,
+                                                    style='inner_frame.TFrame',
                                                     padding=5)
         self._what_went_well_entry = ttk.Entry(
             master=self._what_went_well_frame)
 
-        self._what_went_well_frame.grid(row=3, column=0, padx=5, pady=5)
+        self._what_went_well_label.grid(row=5, column=0)
+        self._what_went_well_frame.grid(row=6, column=0, padx=5, pady=5)
         self._what_went_well_entry.grid()
 
     def _define_what_did_not_go_well(self):
         '''Creates an input field where user can write what did not go well.
         '''
 
-        self._what_did_not_go_well_frame = ttk.Labelframe(master=self._frame,
-                                                          text='What did not go well',
-                                                          labelanchor='nw',
+        self._what_did_not_go_went_well_label = ttk.Label(master=self._frame,
+                                         text='What did not go well',
+                                         style='text.TLabel',
+                                         justify='center',
+                                         padding=(0,10,0,0))
+        
+        self._what_did_not_go_well_frame = ttk.Frame(master=self._frame,
+                                                          style='inner_frame.TFrame',
                                                           padding=5)
         self._what_did_not_go_well_entry = ttk.Entry(
             master=self._what_did_not_go_well_frame)
 
-        self._what_did_not_go_well_frame.grid(row=3, column=1, padx=5, pady=5)
+        self._what_did_not_go_went_well_label.grid(row=7, column=1)
+        self._what_did_not_go_well_frame.grid(row=8, column=1, padx=5, pady=5)
         self._what_did_not_go_well_entry.grid()
 
     def _define_goal_for_next_session_frame(self):
         '''Creates an input field where user can write a goal for next session.
         '''
 
-        self._goal_for_next_session_frame = ttk.Labelframe(master=self._frame,
-                                                           text='Goal for next session',
-                                                           labelanchor='nw',
-                                                           padding=5)
+        self._goal_for_next_session_label = ttk.Label(master=self._frame,
+                                         text='Goal for next session',
+                                         style='text.TLabel',
+                                         justify='center',
+                                         padding=(0,10,0,0))
+        
+        self._goal_for_next_session_frame = ttk.Frame(master=self._frame,
+                                                      style='inner_frame.TFrame',
+                                                      padding=5)
+        
         self._goal_for_next_session_entry = ttk.Entry(
             master=self._goal_for_next_session_frame)
 
-        self._goal_for_next_session_frame.grid(row=5, column=0, padx=5, pady=5)
+        self._goal_for_next_session_label.grid(row=7, column=0)
+        self._goal_for_next_session_frame.grid(row=8, column=0, padx=5, pady=5)
         self._goal_for_next_session_entry.grid()
 
     def _define_previously_set_goal_frame(self):
@@ -153,17 +190,24 @@ class NewLogEntryView:
         from latest entry in the database by user.
         '''
 
-        self._previously_set_goal_frame = ttk.Labelframe(master=self._frame,
-                                                         text='Previously set goal',
-                                                         labelanchor='nw',
+        self._previously_set_goal_name_label = ttk.Label(master=self._frame,
+                                         text='Previously set goal',
+                                         style='text.TLabel',
+                                         justify='center',
+                                         padding=(0,10,0,0))
+        
+        self._previously_set_goal_frame = ttk.Frame(master=self._frame,
+                                                         style='inner_frame.TFrame',
                                                          padding=5)
 
         self._previously_set_goal_label = ttk.Label(master=self._previously_set_goal_frame,
                                                     text=f'{log_entry_service.get_last_log_entry()[8]}',
                                                     wraplength=150,
-                                                    justify='center')
+                                                    justify='center',
+                                                    style='inside_text.TLabel')
 
-        self._previously_set_goal_frame.grid(row=4, column=0, padx=5, pady=5)
+        self._previously_set_goal_name_label.grid(row=9, column=0)
+        self._previously_set_goal_frame.grid(row=10, column=0, padx=5, pady=5)
         self._previously_set_goal_label.grid()
 
     def _define_was_last_goal_achieved_frame(self):
@@ -171,10 +215,15 @@ class NewLogEntryView:
         their last set goal.
         '''
 
-        self._was_previous_goal_achieved_frame = ttk.Labelframe(master=self._frame,
-                                                                text='Was previously set goal achieved?',
-                                                                labelanchor='nw',
-                                                                padding=5)
+        self._was_set_goal_achieved = ttk.Label(master=self._frame,
+                                         text='Was previously set goal achieved',
+                                         style='text.TLabel',
+                                         justify='center',
+                                         padding=(0,10,0,0))
+        
+        self._was_previous_goal_achieved_frame = ttk.Frame(master=self._frame,
+                                                           style='inner_frame.TFrame',
+                                                           padding=5)
 
         self._was_last_goal_achieved = StringVar(
             master=self._was_previous_goal_achieved_frame)
@@ -185,12 +234,14 @@ class NewLogEntryView:
         i = 1
         for value in values:
             rad_but = ttk.Radiobutton(
-                master=self._was_previous_goal_achieved_frame, text=value[0], value=value[1], variable=self._was_last_goal_achieved)
-            rad_but.grid(row=4, column=i, padx=5, pady=5)
+                master=self._was_previous_goal_achieved_frame, text=value[0], value=value[1], 
+                variable=self._was_last_goal_achieved, style='radio_button.TRadiobutton')
+            rad_but.grid(row=0, column=i, padx=5, pady=5)
             i += 1
 
+        self._was_set_goal_achieved.grid(row=9, column=1)
         self._was_previous_goal_achieved_frame.grid(
-            row=4, column=1, padx=5, pady=5)
+            row=10, column=1, padx=5, pady=5)
 
     def _define_buttons(self):
         '''Creates buttons for user to go back
@@ -200,17 +251,19 @@ class NewLogEntryView:
         self._go_back_button = ttk.Button(
             master=self._frame,
             text='Back',
-            command=self._handle_go_back
+            command=self._handle_go_back,
+            style='button.TButton'
         )
 
         self._save_entry_button = ttk.Button(
             master=self._frame,
             text='Save entry',
-            command=self._handle_create_new_log_entry
+            command=self._handle_create_new_log_entry,
+            style='button.TButton'
         )
 
-        self._go_back_button.grid(row=6, column=0, padx=5)
-        self._save_entry_button.grid(row=6, column=1, padx=5)
+        self._go_back_button.grid(row=11, column=0, padx=5, pady=(15, 0))
+        self._save_entry_button.grid(row=11, column=1, padx=5, pady=(15, 0))
 
     def _define_frames(self):
         self._define_date_frame()
@@ -224,9 +277,16 @@ class NewLogEntryView:
         self._define_buttons()
 
     def _initialize(self):
-        self._frame = ttk.LabelFrame(master=self._root, text='Create a log entry',
-                                     border=0,
-                                     labelanchor='n',
+        self._frame = ttk.Frame(master=self._root,
+                                     style='background.TFrame',
                                      padding=10)
+
+        self.main_label = ttk.Label(master=self._frame,
+                                    text='Create a new log entry',
+                                    justify='center',
+                                    style='text.TLabel',
+                                    padding=(0,0,0,10))
+        
+        self.main_label.grid(columnspan=2, row=0)
 
         self._define_frames()

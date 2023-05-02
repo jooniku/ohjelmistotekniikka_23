@@ -17,4 +17,5 @@
 | 27.04 | 4    | Wrote architecture documentation and user manual doc. |
 | 28.04 | 2    | Wrote docstring and fixed bug with displaying ranked session styles. |
 | 01.05 | 2    | Wrote tests. |
-| Total | 50 | 
+| 02.05 | 5    | Added themes and user can switch between nightmode and daymode. |
+| Total | 55 | 

@@ -36,4 +36,5 @@
 
 ## Week 7
 - Created new classes AppStyle, NightMode and Daymode for controlling UI style
+- User can now change between these themes with a button on the main page
 

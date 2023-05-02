@@ -11,6 +11,7 @@ With the app, users can keep a record of their martial arts training sessions an
 
 ## Releases
 - [Week 5 Release](https://github.com/jooniku/ohjelmistotekniikka_23/releases/tag/week5)
+- [Week 6 Release](https://github.com/jooniku/ohjelmistotekniikka_23/releases/tag/week6)
 
 ## Installation
 

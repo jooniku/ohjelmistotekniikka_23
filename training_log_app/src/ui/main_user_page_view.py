@@ -2,7 +2,6 @@ from tkinter import ttk, constants
 from services.log_entry_service import log_entry_service
 from ui.app_style import AppStyle
 
-
 class MainUserPageView:
     '''Class for main users page interface.
     '''
@@ -11,7 +10,9 @@ class MainUserPageView:
                  login_view,
                  new_entry_view,
                  statistics_view,
-                 browse_log_entries_view):
+                 browse_log_entries_view,
+                 change_theme,
+                 theme):
 
         self._root = root
         self._frame = None
@@ -19,7 +20,8 @@ class MainUserPageView:
         self._new_entry_view = new_entry_view
         self._statistics_view = statistics_view
         self._browse_log_entries_view = browse_log_entries_view
-
+        self._change_theme = change_theme
+        self._theme = theme
 
         self._initialize()
 
@@ -43,8 +45,7 @@ class MainUserPageView:
         self._browse_log_entries_view()
 
     def _handle_change_theme(self):
-        self.theme = 'night'
-        self.style
+        self._change_theme()
 
     def _define_last_entry_frame(self):
         '''The main frame of users latest log entry. 
@@ -165,7 +166,7 @@ class MainUserPageView:
         self.total_time_label.grid(row=1)
 
         self.total_time_label_frame.grid(
-            row=2, column=0, padx=self.padx, pady=self.pady)
+            row=2, column=0, padx=10, pady=10)
 
         self.total_time_spent_hours_label.grid(
             row=1, column=0, padx=10, pady=5)
@@ -198,8 +199,8 @@ class MainUserPageView:
         self._frame = ttk.Frame(master=self._root, style='background.TFrame')
         self.heading_label = ttk.Label(master=self._frame, text='Main Page')
 
-        self.padx = 10
-        self.pady = 10
+
+        self.style = AppStyle(theme=self._theme)
 
         # define variables and get values from database etc.
         self._define_nav_bar_frame()

@@ -7,7 +7,7 @@ class BrowseLogEntriesView:
     '''Class for page where user can
     browse all log entries.'''
 
-    def __init__(self, root, main_user_page):
+    def __init__(self, root, main_user_page, theme):
         '''Initialize class.
 
         Args:
@@ -22,6 +22,8 @@ class BrowseLogEntriesView:
         self.current_log_id = log_entry_service.get_latest_log_id()
         self.max_log_id = self.current_log_id
         self.log_index_error_label = None
+
+        self.style = AppStyle(theme=theme)
 
         self._initialize()
 

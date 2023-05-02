@@ -10,7 +10,7 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 class StatisticsPageView:
     '''Class for main users page interface'''
 
-    def __init__(self, root, main_user_page):
+    def __init__(self, root, main_user_page, theme):
         '''Initialize the page.
 
         Args:
@@ -21,6 +21,8 @@ class StatisticsPageView:
         self._root = root
         self._frame = None
         self._main_user_page = main_user_page
+
+        self.style = AppStyle(theme=theme)
 
         self._initialize()
 

@@ -6,7 +6,7 @@ class CreateNewUserView:
     '''Class for the ui of creating a new user.
     '''
 
-    def __init__(self, root, login_view):
+    def __init__(self, root, login_view, theme):
         '''initialize class
 
         Args:
@@ -19,6 +19,8 @@ class CreateNewUserView:
         self._show_login_view = login_view
         self._frame = None
         self.error_label = None
+
+        self.style = AppStyle(theme=theme)
 
         self._initialize()
 

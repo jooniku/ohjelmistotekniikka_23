@@ -8,10 +8,12 @@ from ui.app_style import AppStyle
 class NewLogEntryView:
     '''UI view for adding a log entry'''
 
-    def __init__(self, root, main_view) -> None:
+    def __init__(self, root, main_view, theme) -> None:
         self._root = root
         self._frame = None
         self._main_user_view = main_view
+        
+        self.style = AppStyle(theme=theme)
 
         self._initialize()
 

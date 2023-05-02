@@ -153,15 +153,25 @@ class AppStyle:
     itself.
     '''
 
-    def __init__(self, theme=None):
+    def __init__(self, theme):
         '''Initialize style.
         '''
+        # currently this doesn't work so another
+        # version is used
+        '''
         themes = {
-            'day': DayMode(),
-            'night': NightMode()
+            'night': NightMode(),
+            'day': DayMode()
+
         }
 
         self.current_style = themes[theme]
+        '''
+        if theme == 'day':
+            self.current_style = DayMode()
+        else:
+            self.current_style = NightMode()
+
 
         self.set_font()
 
@@ -207,4 +217,3 @@ class AppStyle:
         else:
             self.current_style = NightMode()
 
-#app_style = AppStyle('day')

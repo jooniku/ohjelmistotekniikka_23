@@ -6,15 +6,15 @@ class LoginView:
     '''Class responsible for login page UI
     '''
 
-    def __init__(self, root, show_main_page, show_create_new_user):
+    def __init__(self, root, show_main_page, show_create_new_user, theme):
         self._root = root
         self._show_main_page = show_main_page
         self._show_create_new_user = show_create_new_user
 
 
-        self._frame = None
+        self.style = AppStyle(theme)
 
-        self.style = AppStyle()
+        self._frame = None
 
         self._initialize()
 
@@ -105,7 +105,6 @@ class LoginView:
         '''This is called from __init__ function.
         Calls functions to create page.
         '''
-        self.style = AppStyle('day')
 
         self._frame = ttk.Frame(master=self._root, style='background.TFrame')
 

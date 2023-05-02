@@ -10,6 +10,7 @@ With the app, users can keep a record of their martial arts training sessions an
 - [Working time record](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/documentation/working_time_record.md)
 
 ## Releases
+- [Week 6 Release](https://github.com/jooniku/ohjelmistotekniikka_23/releases/tag/week6)
 - [Week 5 Release](https://github.com/jooniku/ohjelmistotekniikka_23/releases/tag/week5)
 
 ## Installation

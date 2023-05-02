@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "src"
 version = "0.1.0"
-description = "Project for Ohjelmistotekniikka"
-authors = ["Joona Nikula <nikulajoona@gmail.com>"]
+description = "Project for course Ohjelmistotekniikka, 2023 Spring"
+authors = ["Joona Nikula <joona.nikula@helsinki.fi>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

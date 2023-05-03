@@ -14,6 +14,7 @@ def drop_tables(db_connection):
 
     cursor.execute('''drop table if exists Users;''')
     cursor.execute('''drop table if exists Log_entries;''')
+    cursor.execute('''drop table if exists Themes;''')
     db_connection.commit()
 
 
@@ -42,7 +43,14 @@ def create_tables(db_connection):
                     what_did_not_go_well text,
                     goal_for_next_session text,
                     was_last_goal_achieved integer);''')
-
+    
+    cursor.execute('''create table Themes
+                    (id integer primary key,
+                    theme text);''')
+    
+    cursor.execute('''insert into Themes
+                    (theme) values ('day');''')
+    
     db_connection.commit()
 
 

@@ -23,6 +23,8 @@ class MainUserPageView:
         self._change_theme = change_theme
         self._theme = theme
 
+        self.style = AppStyle(theme=self._theme)
+
         self._initialize()
 
     def pack(self):
@@ -200,7 +202,6 @@ class MainUserPageView:
         self.heading_label = ttk.Label(master=self._frame, text='Main Page')
 
 
-        self.style = AppStyle(theme=self._theme)
 
         # define variables and get values from database etc.
         self._define_nav_bar_frame()

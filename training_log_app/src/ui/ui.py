@@ -5,6 +5,7 @@ from ui.create_new_user_view import CreateNewUserView
 from ui.main_user_page_view import MainUserPageView
 from ui.statistics_view import StatisticsPageView
 from ui.browse_log_entries_view import BrowseLogEntriesView
+from services.log_entry_service import log_entry_service
 
 class UI:
     '''Class responsible for user interface'''
@@ -17,7 +18,9 @@ class UI:
 
         self._root = root
         self._current_view = None
-        self._theme = 'day'
+        
+        self._theme = log_entry_service.load_theme()
+
         self.configure_window()
         
     def configure_window(self):
@@ -28,10 +31,14 @@ class UI:
             self._current_view.destroy()
         
     def _change_theme(self):
+        '''Changes applications theme.
+        '''
         if self._theme == 'day':
             self._theme = 'night'
         else:
             self._theme = 'day'
+
+        log_entry_service.save_theme(current_theme=self._theme)
         self._show_main_user_page()
 
     def start(self):

@@ -10,6 +10,10 @@ from repositories.user_repository import (
     user_repository as default_user_repository
 )
 
+from repositories.theme_repository import (
+    theme_repository as default_theme_repository
+)
+
 
 class InvalidCredentialsError(Exception):
     pass
@@ -38,17 +42,20 @@ class LogEntryService:
 
     def __init__(self,
                  log_entry_repository=default_log_entry_repository,
-                 user_repository=default_user_repository):
+                 user_repository=default_user_repository,
+                 theme_repository=default_theme_repository):
         '''Initializes the service class.
 
         Args:
             log_entry_repo: LogEntryRepository object to use
             user_repository: UserRepository object to use
+            theme_repository: ThemeRepository object to use
         '''
 
         self.user = None
         self.log_entry_repository = log_entry_repository
         self.user_repository = user_repository
+        self.theme_repository = theme_repository
 
     def create_log_entry(self, content: dict):
         '''Creates a new log entry using
@@ -282,6 +289,24 @@ class LogEntryService:
             user=self.user, log_id=log_id)
 
         return ['no data' for _ in range(9)] if log_id is None or entry is None else entry
+    
+    def load_theme(self):
+        '''Loads theme for application.
 
+        Returns:
+            theme (str): theme name
+        '''
+
+        return self.theme_repository.load_application_theme()
+    
+    def save_theme(self, current_theme):
+        '''Save theme for application.
+        Is called when theme is changed.
+        
+        Args:
+            theme (str): current theme name
+        '''
+
+        self.theme_repository.save_application_theme(theme=current_theme)
 
 log_entry_service = LogEntryService()

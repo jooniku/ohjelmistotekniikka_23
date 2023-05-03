@@ -51,7 +51,7 @@ classDiagram
 ## Functional entities
 The class responsible for functional entities is [LogEntryService](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/src/services/log_entry_service.py). The class offers service for all user interface actions such as login, create new user etc.
 
-The class _LogEntryService_ has access to users and their log entries through their repositories [LogEntryRepository](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/src/repositories/log_entry_repository.py) and [UserRepository](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/src/repositories/user_repository.py) such that the repositories handle saving and retrieving the data and passes it to _LogEntryService_.
+The class _LogEntryService_ has access to users and their log entries through their repositories [LogEntryRepository](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/src/repositories/log_entry_repository.py) and [UserRepository](https://github.com/jooniku/ohjelmistotekniikka_23/blob/master/training_log_app/src/repositories/user_repository.py) such that the repositories handle saving and retrieving the data and passes it to _LogEntryService_. ThemeRepository handles saving and loading themes and passes them to the LogEntryService class.
 
 The user interface accesses _LogEntryService_ only. 
 
@@ -60,6 +60,8 @@ classDiagram
     UserRepository <|--|> LogEntryService
     
     LogEntryRepository <|--|> LogEntryService
+    
+    ThemeRepository <|--|> LogEntryService
     
     UserInterface --> LogEntryService
 ```
@@ -70,7 +72,7 @@ From the layer _repositories_, the classes _LogEntryRepository_ and _UserReposit
 ### Data files
 The program saves all data to one database. The name and path of the database file is defined in the _**.env**_ file in the _**./training_log_app/**_ directory.
 
-The database has **2** tables: Log_entries and Users.
+The database has **3** tables: Log_entries, Users and Themes.
 
 The **Users** table is structured like so:
 - id _**integer**_
@@ -88,6 +90,10 @@ The **Log_entries** table is structured like so:
 - what_did_not_go_well   _**string**_
 - goal_for_next_session  _**string**_
 - was_last_goal_achieved  _**integer, 1(yes) or 0(no)**_
+
+The **Themes** table is a very simple table to mainly save current theme and load it, it is structured like so:
+- id _**themes id, always 1**_
+- theme  _**string, theme name, for example 'day'**_
 
 
 ## Main functions

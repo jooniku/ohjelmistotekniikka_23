@@ -89,7 +89,7 @@ You can also go back and discard the new entry by clicking the "Back"-button. Th
 ## Browsing log entries
 By clicking the "Browse logs"-button on the main page, you are directed to this page.
 
-![browse_log_entries_page](./browse_log_entries_page.png)
+![browse_log_entries_page](./photos/browse_log_entries_page.png)
 
 Entries on this page are displayed in the same format as the one on the main page. Here you'll first see your last log entry. By clicking "Previous" and "Next" -buttons you can browse through the entries.
 
@@ -100,7 +100,7 @@ By clicking the "Statistics"-button on the main page, you'll be directed here.
 
 Here you can see some statistics about your training sessions.
 
-![statistics_page](./statistics_page.png)
+![statistics_page](./photos/statistics_page.png)
 
 
 **Total training sessions:** This tells the total amount of sessions you have entered.

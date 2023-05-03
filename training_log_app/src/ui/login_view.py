@@ -2,15 +2,24 @@ from tkinter import ttk, constants
 from services.log_entry_service import log_entry_service, InvalidCredentialsError
 from ui.app_style import AppStyle
 
+
 class LoginView:
     '''Class responsible for login page UI
     '''
 
     def __init__(self, root, show_main_page, show_create_new_user, theme):
+        '''Initialize view.
+
+        Args:
+            root: root window
+            show_main_page (method): show main page
+            show_create_new_user (method): show new user creation page
+            theme (string): which theme to show
+        '''
+
         self._root = root
         self._show_main_page = show_main_page
         self._show_create_new_user = show_create_new_user
-
 
         self.style = AppStyle(theme)
 

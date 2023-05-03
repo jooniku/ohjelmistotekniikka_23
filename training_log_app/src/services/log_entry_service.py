@@ -289,24 +289,25 @@ class LogEntryService:
             user=self.user, log_id=log_id)
 
         return ['no data' for _ in range(9)] if log_id is None or entry is None else entry
-    
+
     def load_theme(self):
-        '''Loads theme for application.
+        '''Gets theme name to load.
 
         Returns:
             theme (str): theme name
         '''
 
         return self.theme_repository.load_application_theme()
-    
+
     def save_theme(self, current_theme):
         '''Save theme for application.
         Is called when theme is changed.
-        
+
         Args:
             theme (str): current theme name
         '''
 
         self.theme_repository.save_application_theme(theme=current_theme)
+
 
 log_entry_service = LogEntryService()

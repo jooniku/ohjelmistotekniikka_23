@@ -14,8 +14,9 @@ class StatisticsPageView:
         '''Initialize the page.
 
         Args:
-            root (_type_): root window
-            main_user_page (_type_): page to go back to
+            root: root window
+            main_user_page (method): page to go back to
+            theme (string): which theme to use
         '''
 
         self._root = root
@@ -69,11 +70,13 @@ class StatisticsPageView:
 
         ax = figure.add_subplot()
 
-        bar = ax.bar([i for i in range(1, 53)], graph_data, color=self.style.get_graph_bar_colour())
+        bar = ax.bar([i for i in range(1, 53)], graph_data,
+                     color=self.style.get_graph_bar_colour())
 
         ax.set_xlabel('week', color=self.style.get_inner_frame_text_colour())
         ax.set_xlim([1, 52])
-        ax.set_ylabel('sessions', color=self.style.get_inner_frame_text_colour())
+        ax.set_ylabel(
+            'sessions', color=self.style.get_inner_frame_text_colour())
         ax.set_ylim([0, 7])
 
         canvas = FigureCanvasTkAgg(
@@ -91,10 +94,11 @@ class StatisticsPageView:
         training_sessions_weekly_label = ttk.Label(master=self._frame,
                                                    text='Graph of weekly training sessions this year',
                                                    style='text.TLabel',
-                                                   padding=(0,10,0,0),
+                                                   padding=(0, 10, 0, 0),
                                                    justify='center')
 
-        self.training_sessions_weekly_frame = ttk.Frame(master=self._frame, style='inner_frame.TFrame', border=1)
+        self.training_sessions_weekly_frame = ttk.Frame(
+            master=self._frame, style='inner_frame.TFrame', border=1)
 
         self._create_graph_of_weekly_session_this_year()
 
@@ -134,9 +138,10 @@ class StatisticsPageView:
                                              text='Training instances',
                                              style='text.TLabel',
                                              justify='center',
-                                             padding=(0,10,0,0))
+                                             padding=(0, 10, 0, 0))
 
-        self.training_instances_frame = ttk.Frame(master=self._frame, style='inner_frame.TFrame')
+        self.training_instances_frame = ttk.Frame(
+            master=self._frame, style='inner_frame.TFrame')
 
         data = log_entry_service.get_current_training_instances()
 
@@ -145,7 +150,7 @@ class StatisticsPageView:
                                     justify='center', style='inside_text.TLabel')
         self.month_label = ttk.Label(master=self.training_instances_frame,
                                      text=f'This month:\n{data[1]}',
-                                    justify='center', style='inside_text.TLabel')
+                                     justify='center', style='inside_text.TLabel')
         self.week_label = ttk.Label(master=self.training_instances_frame,
                                     text=f'This week:\n{data[2]}',
                                     justify='center', style='inside_text.TLabel')
@@ -166,11 +171,12 @@ class StatisticsPageView:
 
         rank_session_styles_label = ttk.Label(master=self._frame,
                                               text='Session styles ranked',
-                                              padding=(0,10,0,0),
+                                              padding=(0, 10, 0, 0),
                                               justify='center',
                                               style='text.TLabel')
 
-        self.rank_session_styles_frame = ttk.Frame(master=self._frame, style='inner_frame.TFrame')
+        self.rank_session_styles_frame = ttk.Frame(
+            master=self._frame, style='inner_frame.TFrame')
 
         rank_session_styles_label.grid(row=3, column=0)
         self.rank_session_styles_frame.grid(
@@ -214,10 +220,6 @@ class StatisticsPageView:
         self.goals_achieved_label.grid(padx=10, pady=10)
 
     def _initialize(self):
-        # initialize window
         self._frame = ttk.Frame(master=self._root, style='background.TFrame')
 
-        # define variables and get values from database etc.
-        # consists of first part defining variables and
-        # second part building them
         self._define_statistics_frame()

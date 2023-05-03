@@ -38,4 +38,6 @@
 - Created new classes AppStyle, NightMode and Daymode for controlling UI style
 - User can now change between these themes with a button on the main page
 - User can now set theme and it stays saved even if app is closed
+- Browsing log entries has text boxes so larger texts are handled better
+- Themes are separated from other ui classes
 

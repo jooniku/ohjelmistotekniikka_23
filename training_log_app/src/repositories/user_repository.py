@@ -93,5 +93,4 @@ class UserRepository:
         return bcrypt.checkpw(password_attempt.encode('utf-8'), user_password)
 
 
-
 user_repository = UserRepository(get_database_connection())

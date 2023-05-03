@@ -1,4 +1,5 @@
-from tkinter import ttk, constants
+import tkinter as tk
+from tkinter import ttk, constants, scrolledtext
 from services.log_entry_service import log_entry_service
 from ui.app_style import AppStyle
 
@@ -32,14 +33,6 @@ class BrowseLogEntriesView:
 
     def destroy(self):
         self._frame.destroy()
-
-    def _style_config(self):
-        '''Style the current page.
-        '''
-
-        self.style = ttk.Style()
-
-        self.style.configure('label_frame.TLabelFrame', background='red')
 
     def _handle_go_back(self):
         self._main_user_page()
@@ -101,40 +94,63 @@ class BrowseLogEntriesView:
         to read it in it's current structure rather than chopped up.
         '''
 
-        entry = log_entry_service.get_log_entry_with_id(self.current_log_id)
+        self.entry = log_entry_service.get_log_entry_with_id(self.current_log_id)
 
         self.log_entry_frame = ttk.Frame(master=self._frame,
-                                              style='inner_frame.TFrame')
+                                        style='inner_frame.TFrame')
 
         self.main_label = ttk.Label(master=self._frame, text='Browse Log Entries',
                                     justify='center', style='text.TLabel')
 
         self.date_label = ttk.Label(
-            master=self.log_entry_frame, text=f'Date:\n{entry[3]}',
+            master=self.log_entry_frame, text=f'Date:\n{self.entry[3]}',
             style='inside_text.TLabel', justify='center')
 
         # this is done so it won't display 'no data minutes'
         time_var = ''
-        if entry[3] != entry[2]:
+        if self.entry[3] != self.entry[2]:
             time_var += f' minutes'
 
         self.duration_label = ttk.Label(
-            master=self.log_entry_frame, text=f'Duration:\n{entry[4]}{time_var}',
+            master=self.log_entry_frame, text=f'Duration:\n{self.entry[4]}{time_var}',
             style='inside_text.TLabel', justify='center')
         self.session_style_label = ttk.Label(
-            master=self.log_entry_frame, text=f'Session style:\n{entry[5]}',
-            style='inside_text.TLabel', justify='center')
-        self.what_went_well_label = ttk.Label(
-            master=self.log_entry_frame, text=f'What went well:\n{entry[6]}', wraplength=250,
-            style='inside_text.TLabel', justify='center')
-        self.what_did_not_go_well_label = ttk.Label(
-            master=self.log_entry_frame, text=f'What did not go well:\n{entry[7]}', wraplength=250,
-            style='inside_text.TLabel', justify='center')
-        self.goal_for_next_session_label = ttk.Label(
-            master=self.log_entry_frame, text=f'Goal for next session:\n{entry[8]}', wraplength=250,
+            master=self.log_entry_frame, text=f'Session style:\n{self.entry[5]}',
             style='inside_text.TLabel', justify='center')
 
+        self.create_text_boxes()
         self._build_log_entry_frame()
+
+
+    def create_text_boxes(self):
+        '''Creates text boxes for displaying possibly
+        long text.
+        '''
+        
+        labels = ['What went well:', 'What did not go well:', 'Goal for next session:']
+
+        for text_box in range(len(labels)):
+            main_label = ttk.Label(
+                master=self.log_entry_frame, text=labels[text_box],
+                style='inside_text.TLabel', justify='center')
+            
+            main_box = tk.Text(
+                master=self.log_entry_frame, wrap='word',
+                width=30, height=5)
+            
+            main_scrollbar = ttk.Scrollbar(
+                self.log_entry_frame, orient='vertical',
+                command=main_box.yview)
+            
+            main_box.config(
+                yscrollcommand=main_scrollbar.set)
+            
+            main_box.insert('end', f'{self.entry[6+text_box]}')
+            main_box.configure(state='disabled')
+
+            main_label.grid(row=6+text_box*2, column=0, padx=10, pady=5)
+            main_box.grid(row=7+text_box*2, column=0, padx=10, pady=5)
+
 
     def _build_log_entry_frame(self):
         '''place previously created objects on the window
@@ -148,10 +164,7 @@ class BrowseLogEntriesView:
         self.date_label.grid(row=3, column=0, padx=10, pady=5)
         self.duration_label.grid(row=4, column=0, padx=10, pady=5)
         self.session_style_label.grid(row=5, column=0, padx=10, pady=5)
-        self.what_went_well_label.grid(row=6, column=0, padx=10, pady=5)
-        self.what_did_not_go_well_label.grid(row=7, column=0, padx=10, pady=5)
-        self.goal_for_next_session_label.grid(
-            row=8, column=0, padx=10, pady=5)
+
 
     def _define_buttons(self):
         '''Display buttons for controlling page.
@@ -178,13 +191,10 @@ class BrowseLogEntriesView:
 
     def _initialize(self):
         '''Initializes this page, is called
-        from the __init__ function.'''
+        from the __init__ function.
+        '''
 
         self._frame = ttk.Frame(master=self._root, style='background.TFrame')
 
-        self._style_config()
         self._define_log_entry_frame()
         self._define_buttons()
-        
-        self.padx = 10
-        self.pady = 10

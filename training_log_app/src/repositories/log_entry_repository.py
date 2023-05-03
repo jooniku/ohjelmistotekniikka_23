@@ -22,13 +22,14 @@ class LogEntryRepository:
 
         self.database = db_connection
 
-        # different session styles are defined here and the database init file
+        # NOTE: different session styles are defined here and the database init file
         self.session_styles = ['wrestling', 'grappling',
                                'striking', 'sparring', 'other']
 
     def get_session_styles(self):
         '''Return different session styles defined here.
         '''
+
         return self.session_styles
 
     def get_users_log_entry_by_id(self, user: User, log_id: int):

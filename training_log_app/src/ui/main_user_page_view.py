@@ -1,6 +1,8 @@
+import tkinter as tk
 from tkinter import ttk, constants
 from services.log_entry_service import log_entry_service
 from ui.app_style import AppStyle
+
 
 class MainUserPageView:
     '''Class for main users page interface.
@@ -13,6 +15,17 @@ class MainUserPageView:
                  browse_log_entries_view,
                  change_theme,
                  theme):
+        '''Initialize view.
+
+        Args:
+            root: root window
+            login_view (method):  method to go to this page
+            new_entry_view (method):  method to go to this page
+            statistics_view (method): method to go to this page
+            browse_log_entries_view (method): method to go to this page
+            change_theme (method): method to change theme globally
+            theme (string): which theme to use
+        '''
 
         self._root = root
         self._frame = None
@@ -53,40 +66,63 @@ class MainUserPageView:
         '''The main frame of users latest log entry. 
         '''
 
-        latest_entry = log_entry_service.get_last_log_entry()
+        self.latest_entry = log_entry_service.get_last_log_entry()
 
         self.last_entry_label = ttk.Label(master=self._frame, justify='center',
                                           text='Last entry',
                                           style='text.TLabel',
                                           padding=(0, 25, 0, 0))
 
-        self.last_entry_label_frame = ttk.Frame(
+        self.last_entry_frame = ttk.Frame(
             master=self._frame, style='inner_frame.TFrame')
 
         self.date_label = ttk.Label(
-            master=self.last_entry_label_frame, text=f'Date:\n{latest_entry[3]}',
+            master=self.last_entry_frame, text=f'Date:\n{self.latest_entry[3]}',
             style='inside_text.TLabel', justify='center')
 
         # this is done so it won't display 'no data minutes'
         time_var = ''
-        if latest_entry[3] != latest_entry[2]:
+        if self.latest_entry[3] != self.latest_entry[2]:
             time_var += f' minutes'
 
         self.duration_label = ttk.Label(
-            master=self.last_entry_label_frame, text=f'Duration:\n{latest_entry[4]}{time_var}',
+            master=self.last_entry_frame, text=f'Duration:\n{self.latest_entry[4]}{time_var}',
             style='inside_text.TLabel', justify='center')
         self.session_style_label = ttk.Label(
-            master=self.last_entry_label_frame, text=f'Session style:\n{latest_entry[5]}',
+            master=self.last_entry_frame, text=f'Session style:\n{self.latest_entry[5]}',
             style='inside_text.TLabel', justify='center')
-        self.what_went_well_label = ttk.Label(
-            master=self.last_entry_label_frame, text=f'What went well:\n{latest_entry[6]}', wraplength=250,
-            style='inside_text.TLabel', justify='center')
-        self.what_did_not_go_well_label = ttk.Label(
-            master=self.last_entry_label_frame, text=f'What did not go well:\n{latest_entry[7]}', wraplength=250,
-            style='inside_text.TLabel', justify='center')
-        self.goal_for_next_session_label = ttk.Label(
-            master=self.last_entry_label_frame, text=f'Goal for next session:\n{latest_entry[8]}', wraplength=250,
-            style='inside_text.TLabel', justify='center')
+        
+        self.create_text_boxes()
+
+    def create_text_boxes(self):
+        '''Creates text boxes for displaying possibly
+        long text.
+        '''
+        
+        labels = ['What went well:', 'What did not go well:', 'Goal for next session:']
+
+        for text_box in range(len(labels)):
+            main_label = ttk.Label(
+                master=self.last_entry_frame, text=labels[text_box],
+                style='inside_text.TLabel', justify='center')
+            
+            main_box = tk.Text(
+                master=self.last_entry_frame, wrap='word',
+                width=30, height=5)
+            
+            main_scrollbar = ttk.Scrollbar(
+                self.last_entry_frame, orient='vertical',
+                command=main_box.yview)
+            
+            main_box.config(
+                yscrollcommand=main_scrollbar.set)
+            
+            main_box.insert('end', f'{self.latest_entry[6+text_box]}')
+            main_box.configure(state='disabled')
+
+            main_label.grid(row=6+text_box*2, column=0, padx=10, pady=5)
+            main_box.grid(row=7+text_box*2, column=0, padx=10, pady=5)
+
 
     def _define_total_time_frame(self):
         '''Creates frame for displaying total time user
@@ -113,7 +149,6 @@ class MainUserPageView:
                                                      text=f'{total_time_spent_in_minutes / (60*24):.01f} days',
                                                      style='inside_text.TLabel',
                                                      justify='center')
-
 
     def _define_nav_bar_frame(self):
         '''Creates a "nav bar" where user
@@ -182,17 +217,12 @@ class MainUserPageView:
 
         self.last_entry_label.grid(row=3)
 
-        self.last_entry_label_frame.grid(
+        self.last_entry_frame.grid(
             row=4, column=0, padx=10, pady=10)
 
         self.date_label.grid(row=3, column=0, padx=10, pady=5)
         self.duration_label.grid(row=4, column=0, padx=10, pady=5)
         self.session_style_label.grid(row=5, column=0, padx=10, pady=5)
-        self.what_went_well_label.grid(row=6, column=0, padx=10, pady=5)
-        self.what_did_not_go_well_label.grid(row=7, column=0, padx=10, pady=5)
-        self.goal_for_next_session_label.grid(
-            row=8, column=0, padx=10, pady=5)
-
 
     def _initialize(self):
         '''Initialize page.
@@ -200,8 +230,6 @@ class MainUserPageView:
 
         self._frame = ttk.Frame(master=self._root, style='background.TFrame')
         self.heading_label = ttk.Label(master=self._frame, text='Main Page')
-
-
 
         # define variables and get values from database etc.
         self._define_nav_bar_frame()

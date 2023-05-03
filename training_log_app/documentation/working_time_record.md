@@ -18,4 +18,5 @@
 | 28.04 | 2    | Wrote docstring and fixed bug with displaying ranked session styles. |
 | 01.05 | 2    | Wrote tests. |
 | 02.05 | 5    | Added themes and user can switch between nightmode and daymode. |
-| Total | 55 | 
+| 03.05 | 4    | Themes are saved. Added text boxes for viewing log entries. |
+| Total | 59 | 

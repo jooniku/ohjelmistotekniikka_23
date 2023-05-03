@@ -43,14 +43,14 @@ def create_tables(db_connection):
                     what_did_not_go_well text,
                     goal_for_next_session text,
                     was_last_goal_achieved integer);''')
-    
+
     cursor.execute('''create table Themes
                     (id integer primary key,
                     theme text);''')
-    
+
     cursor.execute('''insert into Themes
-                    (theme) values ('day');''')
-    
+                    (theme) values ('DayMode');''')
+
     db_connection.commit()
 
 

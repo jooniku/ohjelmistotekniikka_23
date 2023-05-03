@@ -2,6 +2,7 @@ from tkinter import ttk, constants
 from services.log_entry_service import log_entry_service, UsernameAlreadyInUseError, InvalidInputError
 from ui.app_style import AppStyle
 
+
 class CreateNewUserView:
     '''Class for the ui of creating a new user.
     '''

@@ -9,6 +9,13 @@ class User:
     '''
 
     def __init__(self, username, password):
+        '''Creates user object.
+
+        Args:
+            username (str): username
+            password (str): password
+        '''
+
         self.username = username
         self.password = password
         self.user_id = None

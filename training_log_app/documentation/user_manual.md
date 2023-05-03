@@ -55,12 +55,14 @@ You can go to several different pages from the main page.
 - Browse logs
 - Statistics
 
+You can change the application's theme by clicking the **change theme** button. The theme is saved for the next time you use the application.
+
 You can also **log out** by clicking the "Log out" button on the top right corner. Then you'll be transferred to the login page.
 
 ## Creating a new log entry
 By clicking the "New Log Entry"-button on the main page, you can create a new entry.
 
-![new_log_entry_page] __styling is unfinished so no photo yet__
+![new_log_entry_page](./photos/new_log_entry_page.png)
 
 There are several different input fields where you can write information. Here are the intended uses of them.
 
@@ -87,7 +89,7 @@ You can also go back and discard the new entry by clicking the "Back"-button. Th
 ## Browsing log entries
 By clicking the "Browse logs"-button on the main page, you are directed to this page.
 
-![browse_log_entries_page] __styling is unfinished so no photo yet__
+![browse_log_entries_page](./browse_log_entries_page.png)
 
 Entries on this page are displayed in the same format as the one on the main page. Here you'll first see your last log entry. By clicking "Previous" and "Next" -buttons you can browse through the entries.
 
@@ -97,6 +99,9 @@ You can go back to the main page by clicking the "Back"-button.
 By clicking the "Statistics"-button on the main page, you'll be directed here.
 
 Here you can see some statistics about your training sessions.
+
+![statistics_page](./statistics_page.png)
+
 
 **Total training sessions:** This tells the total amount of sessions you have entered.
 

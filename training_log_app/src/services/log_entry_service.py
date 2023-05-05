@@ -82,7 +82,7 @@ class LogEntryService:
         try:
             entry.duration = int(entry.duration)
             # sqlite can not handle huge integers
-            if entry.duration > 99999999:
+            if 0 > entry.duration > 99999999:
                 raise InvalidInputError
         except ValueError as exc:
             raise InvalidInputError from exc

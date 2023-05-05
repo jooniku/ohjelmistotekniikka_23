@@ -9,7 +9,7 @@ The user interface has **6** different pages.
 - Browse log entries page
 - Statistics page
 
-Each page is it's own class and user can view one page at a time. The class responsible for controlling the viewing of pages is the _UI_ class. The user interface can **only** access methods by class _LogEntryService_ and has been tried to keep separate from application logic though in some cases it does some very simple data manipulation in order to have more general _LogEntryService_ methods.
+Each page is it's own class and user can view one page at a time. The class responsible for controlling the viewing of pages is the _UI_ class. The user interface can **only** access methods by class _LogEntryService_ and has been tried to keep separate from application logic.
 
 ## Architecture
 The program's architecture follows the three-tier architecture model. The layer structure is the following:

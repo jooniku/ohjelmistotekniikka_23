@@ -16,7 +16,7 @@ Before running the application the first time, go to the subdirectory __/trainin
 ```bash
 poetry install
 ```
-After this, you must initialize the database with the command:
+After this, you **must** initialize the database with the command:
 
 ```bash
 poetry run invoke build

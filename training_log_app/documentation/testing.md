@@ -43,3 +43,4 @@ All of the functionalities in the ![requirement specification](https://github.co
 
 ## Remaining quality issues
 - If the SQLite database has not been initialized with the command `poetry run invoke build`, the program will not show an error message
+- If the path to database is changed to another directory which doesn't exist, the application will not run or show an error message

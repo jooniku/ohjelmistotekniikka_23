@@ -1,4 +1,13 @@
 # User manual
+Download the latest ![release's]() sourcecode by choosing  _Source code_ from the _Assets_ tab.
+
+## Configuration
+The names and paths for the files used in data persistence can be modified in the _training_log_app_ directory's _**.env**_ file. The files are created to the _data_ directory. The config file looks like this:
+
+```bash
+DATABASE_FILENAME='database.sqlite'
+DATABASE_FILEPATH='./data/database.sqlite'
+```
 
 ## Running the application
 

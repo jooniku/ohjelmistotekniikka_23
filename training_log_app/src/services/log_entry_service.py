@@ -81,6 +81,9 @@ class LogEntryService:
         # date validation is done automatically with the selector
         try:
             entry.duration = int(entry.duration)
+            # sqlite can not handle huge integers
+            if entry.duration > 99999999:
+                raise InvalidInputError
         except ValueError as exc:
             raise InvalidInputError from exc
 

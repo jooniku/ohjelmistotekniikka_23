@@ -139,7 +139,8 @@ class LogEntryRepository:
         '''
 
         cursor = self.database.cursor()
-
+        
+        # give log id to new entry
         last_log_id = self.get_users_last_entry_id(user=user)
         if last_log_id is None:
             last_log_id = 0

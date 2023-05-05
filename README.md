@@ -16,6 +16,7 @@ With the app, users can keep a record of their martial arts training sessions an
 - [Week 5 Release](https://github.com/jooniku/ohjelmistotekniikka_23/releases/tag/week5)
 
 ## Installation
+Poetry must be installed on the system.
 
 1. Install dependencies:
 ```bash

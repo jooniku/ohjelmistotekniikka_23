@@ -237,7 +237,8 @@ class LogEntryService:
         and calculates for each week instances of sessions.
         E.g. week 2 has 3 sessions, week 4 has 2 sessions.
 
-        Returns: list instances where index is week
+        Returns: list instances where index is week,
+        first value (index=0) should be ignored.
         '''
 
         current_year = datetime.today().year
@@ -249,10 +250,11 @@ class LogEntryService:
 
         for date in session_dates:
             date = datetime.strptime(date, '%d/%m/%Y').date()
+            week = date.isocalendar()[1]
             if date.year == current_year:
-                training_instances[date.isocalendar()[1]] += 1
+                training_instances[week] += 1
 
-        return training_instances[1:]
+        return training_instances
 
     def get_users_session_styles_ranked(self):
         '''Gets users session styles

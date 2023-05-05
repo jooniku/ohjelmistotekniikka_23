@@ -93,7 +93,7 @@ The **Log_entries** table is structured like so:
 
 The **Themes** table is a very simple table to mainly save current theme and load it, it is structured like so:
 - id _**themes id, always 1**_
-- theme  _**string, theme name, for example 'day'**_
+- theme  _**string, theme name, for example 'DayMode'**_
 
 
 ## Main functions

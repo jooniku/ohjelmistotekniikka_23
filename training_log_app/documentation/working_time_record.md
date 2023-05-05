@@ -20,4 +20,5 @@
 | 02.05 | 5    | Added themes and user can switch between nightmode and daymode. |
 | 03.05 | 4    | Themes are saved. Added text boxes for viewing log entries. |
 | 04.05 | 3    | Wrote tests. |
-| Total | 62 | 
+| 05.05 | 3    | Wrote documentation. |
+| Total | 65 | 

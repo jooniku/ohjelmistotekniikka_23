@@ -3,6 +3,7 @@ from initialize_database import initialize_database
 from database_connection import get_database_connection
 from repositories.theme_repository import ThemeRepository
 
+
 class TestUserRepository(unittest.TestCase):
     def setUp(self):
         initialize_database()

@@ -90,7 +90,7 @@ class UI:
     def _show_create_new_user_view(self):
         '''Displays new user creation page.
         '''
-        
+
         self._hide_current_view()
 
         self._current_view = CreateNewUserView(self._root,
@@ -114,7 +114,7 @@ class UI:
     def _show_browse_log_entries_view(self):
         '''Displays browsing log entries page.
         '''
-        
+
         self._hide_current_view()
 
         self._current_view = BrowseLogEntriesView(self._root,

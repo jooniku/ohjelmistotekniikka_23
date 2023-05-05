@@ -212,17 +212,18 @@ class NewLogEntryView:
                                                     style='inner_frame.TFrame',
                                                     padding=5)
         self.previously_set_goal_text = tk.Text(
-                master=self._previously_set_goal_frame, wrap='word',
-                width=20, height=4)
-            
+            master=self._previously_set_goal_frame, wrap='word',
+            width=20, height=4)
+
         main_scrollbar = ttk.Scrollbar(
-                self._previously_set_goal_frame, orient='vertical',
-                command=self.previously_set_goal_text.yview)
-            
+            self._previously_set_goal_frame, orient='vertical',
+            command=self.previously_set_goal_text.yview)
+
         self.previously_set_goal_text.config(
-                yscrollcommand=main_scrollbar.set)
-            
-        self.previously_set_goal_text.insert('end', f'{log_entry_service.get_last_log_entry()[8]}')
+            yscrollcommand=main_scrollbar.set)
+
+        self.previously_set_goal_text.insert(
+            'end', f'{log_entry_service.get_last_log_entry()[8]}')
         self.previously_set_goal_text.configure(state='disabled')
 
         self._previously_set_goal_name_label.grid(row=9, column=0)

@@ -91,38 +91,38 @@ class MainUserPageView:
         self.session_style_label = ttk.Label(
             master=self.last_entry_frame, text=f'Session style:\n{self.latest_entry[5]}',
             style='inside_text.TLabel', justify='center')
-        
+
         self.create_text_boxes()
 
     def create_text_boxes(self):
         '''Creates text boxes for displaying possibly
         long text.
         '''
-        
-        labels = ['What went well:', 'What did not go well:', 'Goal for next session:']
+
+        labels = ['What went well:', 'What did not go well:',
+                  'Goal for next session:']
 
         for text_box in range(len(labels)):
             main_label = ttk.Label(
                 master=self.last_entry_frame, text=labels[text_box],
                 style='inside_text.TLabel', justify='center')
-            
+
             main_box = tk.Text(
                 master=self.last_entry_frame, wrap='word',
                 width=30, height=5)
-            
+
             main_scrollbar = ttk.Scrollbar(
                 self.last_entry_frame, orient='vertical',
                 command=main_box.yview)
-            
+
             main_box.config(
                 yscrollcommand=main_scrollbar.set)
-            
+
             main_box.insert('end', f'{self.latest_entry[6+text_box]}')
             main_box.configure(state='disabled')
 
             main_label.grid(row=6+text_box*2, column=0, padx=10, pady=5)
             main_box.grid(row=7+text_box*2, column=0, padx=10, pady=5)
-
 
     def _define_total_time_frame(self):
         '''Creates frame for displaying total time user

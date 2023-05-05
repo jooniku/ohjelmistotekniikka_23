@@ -61,7 +61,8 @@ class StatisticsPageView:
         this year using matplotlib.
         '''
 
-        graph_data = log_entry_service.get_weekly_user_training_instances_this_year()[1:]
+        graph_data = log_entry_service.get_weekly_user_training_instances_this_year()[
+            1:]
 
         figure = Figure(figsize=(6, 3),
                         dpi=80,

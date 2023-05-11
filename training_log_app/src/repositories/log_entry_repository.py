@@ -53,23 +53,6 @@ class LogEntryRepository:
 
         return None if entry == [] else entry[0]
 
-    def get_all_entries_with_user(self, user: User):
-        '''Return users entries.
-
-        Args: username - which users entries
-
-        Returns: Specified users entries.
-        '''
-
-        cursor = self.database.cursor()
-
-        entry_list = cursor.execute('''select * from Log_entries where
-                                 user_id=? order by log_id desc''', [user.user_id]).fetchone()
-
-        self.database.commit()
-
-        return entry_list
-
     def get_total_time_spent_by_user(self, user: User):
         '''Returns total time (sum of durations)
         user has spent training.
